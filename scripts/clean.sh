@@ -18,6 +18,9 @@ libobjc2()
 gnustep()
 {
   # tools-make does not need cleaning so we skip and do others
+  # We must reinstall tools-make to be able to clean items from here
+  cd ${SRC}/tools-make && ./configure && gmake
+  . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
   cd ${SRC}/libs-base && gmake clean
   cd ${SRC}/libs-gui && gmake clean
   cd ${SRC}/libs-back && gmake clean
