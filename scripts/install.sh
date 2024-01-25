@@ -9,15 +9,12 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
-libobjc2()
+apps()
 {
-  cd ${SRC}/libobjc2 && cd Build && \
-    ninja install
-}
-
-gnustep()
-{
-  cd ${SRC}/tools-make && gmake install
+  cd ${SRC}/apps-gworkspace && gmake install
+  cd ${SRC}/apps-systempreferences && gmake install
+  cd ${SRC}/gap/system-apps/Terminal && gmake install
+  cd ${SRC}/gs-textedit && gmake install
 }
 
 services()
@@ -35,8 +32,7 @@ sudoers()
   install -m 0440 ../sudoers.d/wheel /usr/local/etc/sudoers.d/wheel
 }
 
-libobjc2
-gnustep
+apps
 #services
 #sysctl
 #sudoers

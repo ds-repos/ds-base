@@ -62,5 +62,29 @@ gnustep()
   fi
 }
 
+apps()
+{
+  # Check if the directory exists before running gmake clean
+  if [ -d "${SRC}/apps-gworkspace" ]; then
+    cd ${SRC}/apps-gworkspace && gmake clean
+  fi
+
+  # Check if the directory exists before running gmake clean
+  if [ -d "${SRC}/apps-systempreferences" ]; then
+    cd ${SRC}/apps-systempreferences && gmake clean
+  fi
+
+  # Check if the directory exists before running gmake clean
+  if [ -d "${SRC}/gap/system-apps/Terminal" ]; then
+    cd ${SRC}/gap/system-apps/Terminal && gmake clean
+  fi
+
+  # Check if the directory exists before running gmake clean
+  if [ -d "${SRC}/gs-textedit" ]; then
+    cd ${SRC}/gs-textedit && gmake clean
+  fi
+}
+
 libobjc2
 gnustep
+apps

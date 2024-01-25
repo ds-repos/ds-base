@@ -32,6 +32,14 @@ gnustep()
   cd ${SRC}/libs-back && ./configure && gmake && gmake install
 }
 
+apps()
+{
+cd ${SRC}/apps-gworkspace && ./configure && gmake
+cd ${SRC}/apps-systempreferences && ./configure && gmake
+cd ${SRC}/gap/system-apps/Terminal && ./configure && gmake
+cd ${SRC}/gs-textedit && ./configure && gmake
+}
+
 libobjc2
 gnustep
-
+apps
