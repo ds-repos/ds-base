@@ -15,4 +15,10 @@ libobjc2()
     ninja clean
 }
 
+gnustep()
+{
+  # tools-make does not need cleaning so we skip and do others
+}
+
 libobjc2
+gnustep

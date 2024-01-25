@@ -15,7 +15,10 @@ libobjc2()
     ninja install
 }
 
-libobjc2
+gnustep()
+{
+  cd ${SRC}/tools-make && gmake install
+}
 
 services()
 {
@@ -32,6 +35,8 @@ sudoers()
   install -m 0440 ../sudoers.d/wheel /usr/local/etc/sudoers.d/wheel
 }
 
+libobjc2
+gnustep
 #services
 #sysctl
 #sudoers

@@ -15,4 +15,11 @@ libobjc2()
     ninja uninstall
 }
 
+gnustep()
+{
+  cd ${SRC}/tools-make && gmake uninstall
+  find /usr -name GNUstep | xargs rm -rf
+}
+
 libobjc2
+gnustep

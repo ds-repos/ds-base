@@ -22,4 +22,11 @@ libobjc2() {
   (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
 }
 
+gnustep()
+{
+  cd ${SRC}/tools-make && ./configure && gmake
+}
+
 libobjc2
+gnustep
+
