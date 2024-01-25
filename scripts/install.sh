@@ -35,14 +35,14 @@ sudoers()
 groups()
 {
   # Iterate over all users with UID 1000 or greater
-  while IFS=: read -r username _ uid _; do
+  getent passwd | while IFS=: read -r username _ uid _; do
       if [ "$uid" -ge 1000 ]; then
           # Add the user to the specified groups
           pw groupmod video -m "$username"
           pw groupmod webcamd -m "$username"
           echo "User $username added to groups: video, webcamd"
       fi
-  done < <(getent passwd)  
+  done
 }
 
 xinitrc()
