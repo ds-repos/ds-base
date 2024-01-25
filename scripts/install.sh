@@ -11,7 +11,7 @@ fi
 
 libobjc2()
 {
-  cd ${SRC}/libobjc2 && mkdir Build && cd Build && \
+  cd ${SRC}/libobjc2 && cd Build && \
     ninja build
 }
 
