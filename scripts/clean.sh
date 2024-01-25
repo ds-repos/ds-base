@@ -10,7 +10,7 @@ fi
 . ../conf/build.conf
 
 # Check if the directory specified by $SRC exists
-if [ ! -d "$SRC" ]; then
+if [ ! -d "${SRC}" ]; then
     exit 0
 fi
 
