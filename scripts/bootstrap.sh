@@ -14,11 +14,4 @@ packages()
   cat ../conf/ports.conf | xargs pkg install -fy
 }
 
-datasets()
-{
-  zfs list ${ZPOOL}/${SRC} >/dev/null 2>/dev/null || \
-	        zfs create -o compression=lz4 ${ZPOOL}/${SRC}
-}
-
 packages
-datasets

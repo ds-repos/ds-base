@@ -9,9 +9,9 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
-datasets()
+src()
 {
-  zfs destroy -r ${ZPOOL}/${SRC}
+  rm -rf /${SRC}
 }
 
-datasets
+src

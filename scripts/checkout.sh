@@ -11,7 +11,29 @@ fi
 
 checkout()
 {
-  cut -d '"' -f2 ../conf/repos.conf | xargs cd /${ZPOOL}/${SRC} && git clone --depth=1
+  if [ ! -d "/${SRC}" ]; then
+    mkdir "/${SRC}"
+  fi
+
+  # Read repository URLs from repos.conf and clone or pull into $SRC
+  while IFS= read -r repo_var; do
+    # Extract the URL from the variable definition
+    repo_url=$(eval echo "$repo_var")
+
+    repo_name=$(basename "$repo_url" .git)
+    repo_dir="/${SRC}/${repo_name}"
+
+    if [ -d "$repo_dir" ]; then
+      # Directory exists, perform git pull
+      cd "$repo_dir" || exit
+      git pull
+      cd -
+    else
+      # Directory doesn't exist, clone the repository
+      git clone "$repo_url" "$repo_dir"
+    fi
+  done < ../conf/repos.conf
+
 }
 
 checkout
