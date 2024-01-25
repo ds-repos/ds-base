@@ -9,6 +9,11 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
+# Check if the directory specified by $SRC exists
+if [ ! -d "$SRC" ]; then
+    exit 0
+fi
+
 libobjc2()
 {
   cd ${SRC}/libobjc2 && cd Build && \
