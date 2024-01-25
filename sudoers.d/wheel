@@ -1,3 +1,1 @@
-cat <<EOF > /usr/local/etc/sudoers.d/wheel
 %wheel ALL=(ALL) ALL
-EOF
