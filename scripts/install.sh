@@ -45,8 +45,13 @@ groups()
   done < <(getent passwd)  
 }
 
+xinitrc()
+{
+}
+
 apps
 services
 sysctl
 sudoers
 groups
+#xinitrc
