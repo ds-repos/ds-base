@@ -47,6 +47,14 @@ groups()
 
 xinitrc()
 {
+  # Iterate over all users with UID 1000 or greater
+  getent passwd | while IFS=: read -r username _ uid _; do
+      if [ "$uid" -ge 1000 ]; then
+          # Add the user to the specified groups
+          install -m 644 .xinitrc /home/"$username"
+          echo "Installed .xinitrc for $username"
+      fi
+  done
 }
 
 apps
@@ -54,4 +62,4 @@ services
 sysctl
 sudoers
 groups
-#xinitrc
+xinitrc
