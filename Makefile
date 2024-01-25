@@ -3,6 +3,7 @@
 #
 
 build:
+	cd scripts && ./clean.sh
 	cd scripts && ./bootstrap.sh
 	cd scripts && ./checkout.sh
 	cd scripts && ./build.sh
@@ -14,4 +15,4 @@ uninstall:
 	cd scripts && ./uninstall.sh
 
 clean:
-	cd scripts && ./cleanup.sh
+	cd scripts && ./clean.sh
