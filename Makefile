@@ -3,8 +3,8 @@
 #
 
 build:
-	cd scripts && ./clean.sh
 	cd scripts && ./bootstrap.sh
+	cd scripts && ./clean.sh
 	cd scripts && ./checkout.sh
 	cd scripts && ./build.sh
 
