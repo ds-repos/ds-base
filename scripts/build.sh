@@ -24,7 +24,7 @@ libobjc2() {
 
 gnustep()
 {
-  cd ${SRC}/tools-make && ./configure && gmake
+  cd ${SRC}/tools-make && ./configure && gmake && gmake install
   . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
   cd ${SRC}/libs-base && ./configure && gmake
   cd ${SRC}/libs-gui && ./configure && gmake
