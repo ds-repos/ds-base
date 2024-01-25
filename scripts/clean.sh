@@ -9,9 +9,10 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
-src()
+libobjc2()
 {
-  rm -rf ${SRC}
+  cd ${SRC}/libobjc2 && mkdir Build && cd Build && \
+    ninja clear
 }
 
-src
+libobjc2
