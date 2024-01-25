@@ -37,9 +37,9 @@ sudoers()
 
 groups()
 {
-  # Iterate over all users with UID 1000 or greater
+  # Iterate over all users with UID between 1000 and 2000
   getent passwd | while IFS=: read -r username _ uid _; do
-      if [ "$uid" -ge 1000 ]; then
+      if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
           # Add the user to the specified groups
           pw groupmod video -m "$username"
           pw groupmod webcamd -m "$username"
@@ -50,10 +50,10 @@ groups()
 
 xinitrc()
 {
-  # Iterate over all users with UID 1000 or greater
+  # Iterate over all users with UID between 1000 and 2000
   getent passwd | while IFS=: read -r username _ uid _; do
-      if [ "$uid" -ge 1000 ]; then
-          # Add the user to the specified groups
+      if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
+          # Install .xinitrc for the user
           cd ${CWD} && install -m 644 ../.xinitrc /home/"$username"
           echo "Installed .xinitrc for $username"
       fi
