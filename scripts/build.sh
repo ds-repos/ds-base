@@ -9,8 +9,10 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
-libobjc2()
+build()
 {
+  cd ${SRC}${libobjc2}
+  pwd
 }
 
 #libobjc2

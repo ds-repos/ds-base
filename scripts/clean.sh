@@ -11,7 +11,7 @@ fi
 
 src()
 {
-  rm -rf /${SRC}
+  rm -rf ${SRC}
 }
 
 src

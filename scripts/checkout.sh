@@ -11,8 +11,8 @@ fi
 
 checkout()
 {
-  if [ ! -d "/${SRC}" ]; then
-    mkdir "/${SRC}"
+  if [ ! -d "${SRC}" ]; then
+    mkdir "${SRC}"
   fi
 
   # Read repository URLs from repos.conf and clone or pull into $SRC
@@ -21,7 +21,7 @@ checkout()
     repo_url=$(echo "$repo_var" | awk -F'=' '{print $2}' | tr -d '"')
 
     repo_name=$(basename "$repo_url" .git)
-    repo_dir="/${SRC}/${repo_name}"
+    repo_dir="${SRC}/${repo_name}"
 
     if [ -d "$repo_dir" ]; then
       # Directory exists, perform git pull
