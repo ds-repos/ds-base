@@ -9,6 +9,9 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
+# This variable allows getting back to this repo
+CWD="$(realpath)"
+
 apps()
 {
   cd ${SRC}/apps-gworkspace && gmake install
@@ -19,17 +22,17 @@ apps()
 
 services()
 {
-  cat ../conf/rc.conf | xargs sysrc
+  cd ${CWD} && cat ../conf/rc.conf | xargs sysrc
 }
 
 sysctl()
 {
-  cat ../conf/sysctl.conf | xargs dsbwrtsysctl
+  cd ${CWD} &&  cat ../conf/sysctl.conf | xargs dsbwrtsysctl
 }
 
 sudoers()
 {
-  install -m 0440 ../sudoers.d/wheel /usr/local/etc/sudoers.d/wheel
+  cd ${CWD} && install -m 0440 ../sudoers.d/wheel /usr/local/etc/sudoers.d/wheel
 }
 
 groups()
@@ -51,7 +54,7 @@ xinitrc()
   getent passwd | while IFS=: read -r username _ uid _; do
       if [ "$uid" -ge 1000 ]; then
           # Add the user to the specified groups
-          install -m 644 .xinitrc /home/"$username"
+          cd ${CWD} && install -m 644 ../.xinitrc /home/"$username"
           echo "Installed .xinitrc for $username"
       fi
   done
