@@ -18,6 +18,9 @@ libobjc2()
 gnustep()
 {
   # tools-make does not need cleaning so we skip and do others
+  cd ${SRC}/libs-base && gmake clean
+  cd ${SRC}/libs-gui && gmake clean
+  cd ${SRC}/libs-back && gmake clean
 }
 
 libobjc2
