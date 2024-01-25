@@ -9,6 +9,14 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
+libobjc2()
+{
+  cd ${SRC}/libobjc2 && mkdir Build && cd Build && \
+    ninja build
+}
+
+libobjc2
+
 services()
 {
   cat ../conf/rc.conf | xargs sysrc
@@ -24,6 +32,6 @@ sudoers()
   install -m 0440 ../sudoers.d/wheel /usr/local/etc/sudoers.d/wheel
 }
 
-services
-sysctl
-sudoers
+#services
+#sysctl
+#sudoers
