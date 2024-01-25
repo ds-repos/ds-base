@@ -11,7 +11,7 @@ fi
 
 build()
 {
-  cd ${SRC}/libobjc2 && && mkdir Build && cd Build && \
+  cd ${SRC}/libobjc2 && mkdir Build && cd Build && \
     cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
 }
 
