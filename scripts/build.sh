@@ -20,15 +20,16 @@ libobjc2() {
 
   # Change to Build directory and configure/build the project
   (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
+  (cd "$build_dir" && ninja install)
 }
 
 gnustep()
 {
   cd ${SRC}/tools-make && ./configure && gmake && gmake install
   . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
-  cd ${SRC}/libs-base && ./configure && gmake
-  cd ${SRC}/libs-gui && ./configure && gmake
-  cd ${SRC}/libs-back && ./configure && gmake
+  cd ${SRC}/libs-base && ./configure && gmake && gmake
+  #cd ${SRC}/libs-gui && ./configure && gmake
+  #cd ${SRC}/libs-back && ./configure && gmake
 }
 
 libobjc2
