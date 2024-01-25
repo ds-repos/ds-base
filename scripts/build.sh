@@ -9,10 +9,17 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
-libobjc2()
-{
-  cd ${SRC}/libobjc2 && mkdir Build && cd Build && \
-    cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+libobjc2() {
+  local repo_dir="${SRC}/libobjc2"
+  local build_dir="${repo_dir}/Build"
+
+  # Check if Build directory exists
+  if [ ! -d "$build_dir" ]; then
+    mkdir "$build_dir"
+  fi
+
+  # Change to Build directory and configure/build the project
+  (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
 }
 
 libobjc2
