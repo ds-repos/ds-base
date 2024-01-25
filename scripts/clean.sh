@@ -6,6 +6,9 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
+# Source build.conf
+. ../conf/build.conf
+
 # Check if $SRC is defined
 if [ -z "$SRC" ]; then
     echo "Error: \$SRC variable is not defined. Please set it in build.conf."
@@ -17,9 +20,6 @@ if [ ! -d "${SRC}" ]; then
     echo "Error: Directory specified by \$SRC ('$SRC') does not exist."
     exit 0
 fi
-
-# Source build.conf
-. ../conf/build.conf
 
 libobjc2()
 {
