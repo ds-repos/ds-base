@@ -39,7 +39,12 @@ gnustep()
     cd ${SRC}/tools-make && ./configure && gmake && gmake install
   fi
 
-  . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
+  # Check if GNUstep.sh exists before sourcing it
+  if [ -f "/usr/local/share/GNUstep/Makefiles/GNUstep.sh" ]; then
+    . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
+  else
+    exit 0
+  fi
 
   # Check if the directory exists before running gmake clean
   if [ -d "${SRC}/libs-base" ]; then
