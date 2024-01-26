@@ -9,7 +9,6 @@ build:
 	cd scripts && ./build.sh
 
 install:
-	cd scripts && ./uninstall.sh
 	cd scripts && ./install.sh
 
 uninstall:

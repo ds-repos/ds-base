@@ -14,6 +14,7 @@ CWD="$(realpath)"
 
 apps()
 {
+  . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
   cd ${SRC}/apps-gworkspace && gmake install
   cd ${SRC}/apps-systempreferences && gmake install
   cd ${SRC}/gap/system-apps/Terminal && gmake install
