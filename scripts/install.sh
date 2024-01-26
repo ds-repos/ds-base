@@ -68,22 +68,27 @@ xinitrc()
 defaults() {
   cp -R ../overlay/ /
 
+#!/bin/sh
+
+defaults() {
+  cp -R ../overlay/ /
+
   # Specify the path to the defaults.conf file
   DEFAULTS_CONF="../conf/defaults.conf"
 
   # Read the defaults.conf file line by line
   while IFS= read -r line; do
     # Ignore comments and empty lines
-    if [[ $line =~ ^\s*# ]] || [[ -z $line ]]; then
-      continue
-    fi
+    case $line in
+      ''|\#*) continue ;;
+    esac
 
     # Execute the command using su for each user
     getent passwd | while IFS=: read -r username _ uid _; do
       # Skip system accounts and accounts with empty usernames
-      if [[ -z $username || $username == "root" || $username == "nologin" || $username == "false" ]]; then
-        continue
-      fi
+      case $username in
+        root|nologin|false|'') continue ;;
+      esac
 
       # Execute the command using su
       su "$username" -c "$line"
