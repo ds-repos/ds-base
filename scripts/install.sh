@@ -49,21 +49,42 @@ groups()
   done
 }
 
-settings()
+overlay()
 {
   cp -R ../overlay/ /
+}
+
+xinitrc()
+{
   # Iterate over all users with UID between 1000 and 2000
   getent passwd | while IFS=: read -r username _ uid _; do
       if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
           # Install xinitrc for the user
           install -o jmaloney -m 644 /usr/share/skel/dot.xinitrc /home/"$username"/.xinitrc
-          # Install GNUstep defaults for the user
-          su - ${username} -c defaults write NSGlobalDomain NSMenuInterfaceStyle NSMacintoshInterfaceStyle
-          su - ${username} -c defaults write NSGlobalDomain GSBackHandlesWindowDecoration YES
-          su - ${username} -c defaults write NSGlobalDomain GSFileBrowserHideDotFiles YES
-          su - ${username} -c defaults write GWorkspace applications '{ 1 = TextEdit; 2 = Terminal; }'
       fi
   done 
+}
+
+defaults()
+{
+  cp -R ../overlay/ /
+  # Specify the path to the defaults.conf file
+  DEFAULTS_CONF="../conf/defaults.conf"
+
+  # Read the defaults.conf file line by line
+  while IFS= read -r line; do
+      # Ignore comments and empty lines
+      if [[ $line =~ ^\s*# ]] || [[ -z $line ]]; then
+          continue
+      fi
+
+      # Run the command for each user
+      while IFS= read -r username; do
+          # Execute the command using su
+          su - "$username" -c "$line"
+      done < /etc/passwd  # You might need a different source for your user list
+
+  done < "$DEFAULTS_CONF"
 }
 
 apps
@@ -71,4 +92,6 @@ services
 sysctl
 sudoers
 groups
-settings
+overlay
+xinitrc
+defaults
