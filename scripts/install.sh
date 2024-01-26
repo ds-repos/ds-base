@@ -65,7 +65,7 @@ overlay()
   cp -R ../overlay/ /
 }
 
-defailts()
+defaults()
 {
   # Iterate over all users with UID between 1000 and 2000
   getent passwd | while IFS=: read -r username _ uid _; do
