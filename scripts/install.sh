@@ -49,27 +49,14 @@ groups()
   done
 }
 
-xinitrc()
-{
-  # Iterate over all users with UID between 1000 and 2000
-  getent passwd | while IFS=: read -r username _ uid _; do
-      if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
-          # Install .xinitrc for the user
-          cd ${CWD} && install -o jmaloney -m 644 ../.xinitrc /home/"$username"
-      fi
-  done
-}
-
-overlay()
+settings()
 {
   cp -R ../overlay/ /
-}
-
-defaults()
-{
   # Iterate over all users with UID between 1000 and 2000
   getent passwd | while IFS=: read -r username _ uid _; do
       if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
+          # Install xinitrc for the user
+          install -o jmaloney -m 644 /usr/share/skel/dot.xinitrc /home/"$username"/.xinitrc
           # Install GNUstep defaults for the user
           su - ${username} -c defaults write NSGlobalDomain NSMenuInterfaceStyle NSMacintoshInterfaceStyle
           su - ${username} -c defaults write NSGlobalDomain GSBackHandlesWindowDecoration YES
@@ -84,6 +71,4 @@ services
 sysctl
 sudoers
 groups
-xinitrc
-overlay
-defaults
+settings
