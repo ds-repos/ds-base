@@ -92,9 +92,6 @@ defaults() {
   done < "$DEFAULTS_CONF"
 }
 
-defaults
-
-
 apps
 services
 sysctl
