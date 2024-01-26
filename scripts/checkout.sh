@@ -39,7 +39,7 @@ checkout()
     else
       # Directory doesn't exist, clone the repository
       echo "Cloning repository: $repo_name"
-      git clone "$repo_value" "$repo_dir"
+      git clone "$repo_value" "$repo_dir" --depth=1
       if [ $? -ne 0 ]; then
         echo "Error cloning repository: $repo_name"
       fi
