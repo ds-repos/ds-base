@@ -37,7 +37,7 @@ apps()
 cd ${SRC}/apps-gworkspace && ./configure && gmake
 cd ${SRC}/apps-systempreferences && gmake
 cd ${SRC}/gap/system-apps/Terminal && gmake
-cd ${SRC}/gs-textedit && ./configure && gmake
+cd ${SRC}/gs-textedit && gmake
 }
 
 libobjc2
