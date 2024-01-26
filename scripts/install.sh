@@ -65,24 +65,29 @@ xinitrc()
   done 
 }
 
-defaults()
-{
+defaults() {
   cp -R ../overlay/ /
+
   # Specify the path to the defaults.conf file
   DEFAULTS_CONF="../conf/defaults.conf"
 
   # Read the defaults.conf file line by line
   while IFS= read -r line; do
-      # Ignore comments and empty lines
-      if [[ $line =~ ^\s*# ]] || [[ -z $line ]]; then
-          continue
+    # Ignore comments and empty lines
+    if [[ $line =~ ^\s*# ]] || [[ -z $line ]]; then
+      continue
+    fi
+
+    # Execute the command using su for each user
+    getent passwd | while IFS=: read -r username _ uid _; do
+      # Skip system accounts and accounts with empty usernames
+      if [[ -z $username || $username == "root" || $username == "nologin" || $username == "false" ]]; then
+        continue
       fi
 
-      # Run the command for each user
-      while IFS= read -r username; do
-          # Execute the command using su
-          su - "$username" -c "$line"
-      done < /etc/passwd  # You might need a different source for your user list
+      # Execute the command using su
+      su "$username" -c "$line"
+    done
 
   done < "$DEFAULTS_CONF"
 }
