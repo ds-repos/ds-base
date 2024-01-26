@@ -61,9 +61,15 @@ xinitrc()
   done
 }
 
+overlay()
+{
+  cp -R ../overlay/ /
+}
+
 apps
 services
 sysctl
 sudoers
 groups
 xinitrc
+overlay
