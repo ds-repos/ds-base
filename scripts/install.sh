@@ -55,8 +55,7 @@ xinitrc()
   getent passwd | while IFS=: read -r username _ uid _; do
       if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
           # Install .xinitrc for the user
-          cd ${CWD} && install -m 644 ../.xinitrc /home/"$username"
-          echo "Installed .xinitrc for $username"
+          cd ${CWD} && install -o jmaloney -m 644 ../.xinitrc /home/"$username"
       fi
   done
 }
@@ -72,8 +71,10 @@ defailts()
   getent passwd | while IFS=: read -r username _ uid _; do
       if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
           # Install GNUstep defaults for the user
-          cp -R /usr/share/skel/GNUstep /home/"$username"/
-          echo "Installed GNUstep defaults for $username"
+          su - ${username} -c defaults write NSGlobalDomain NSMenuInterfaceStyle NSMacintoshInterfaceStyle
+          su - ${username} -c defaults write NSGlobalDomain GSBackHandlesWindowDecoration YES
+          su - ${username} -c defaults write NSGlobalDomain GSFileBrowserHideDotFiles YES
+          su - ${username} -c defaults write GWorkspace applications '{ 1 = TextEdit; 2 = Terminal; }'
       fi
   done 
 }
