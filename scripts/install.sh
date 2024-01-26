@@ -78,15 +78,17 @@ defaults() {
       ''|\#*) continue ;;
     esac
 
-    # Execute the command using su for each user
+    # Execute the command using su for each user with UID between 1000 and 2000
     getent passwd | while IFS=: read -r username _ uid _; do
-      # Skip system accounts and accounts with empty usernames
+      # Skip system accounts, accounts with empty usernames, and users outside the specified UID range
       case "$username" in
         root|nologin|false|'') continue ;;
       esac
 
-      # Execute the command using su
-      su "$username" -c "$line"
+      if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
+        # Execute the command using su
+        su "$username" -c "$line"
+      fi
     done
 
   done < "$DEFAULTS_CONF"
