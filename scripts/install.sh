@@ -66,6 +66,18 @@ overlay()
   cp -R ../overlay/ /
 }
 
+defailts()
+{
+  # Iterate over all users with UID between 1000 and 2000
+  getent passwd | while IFS=: read -r username _ uid _; do
+      if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
+          # Install GNUstep defaults for the user
+          cp -R /usr/share/skel/GNUstep /home/"$username"/
+          echo "Installed GNUstep defaults for $username"
+      fi
+  done 
+}
+
 apps
 services
 sysctl
@@ -73,3 +85,4 @@ sudoers
 groups
 xinitrc
 overlay
+defaults
