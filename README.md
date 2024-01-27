@@ -20,7 +20,6 @@ To install `bsdstep`, follow these steps:
    ```
 3. Build and install the project as root:
    ```
-   make
    make install
    ```
 

@@ -2,17 +2,14 @@
 # Makefile for building a FreeBSD GNUstep environment
 #
 
-build:
+install:
 	cd scripts && ./bootstrap.sh
 	cd scripts && ./clean.sh
 	cd scripts && ./checkout.sh
-	cd scripts && ./build.sh
-
-install:
 	cd scripts && ./install.sh
 
-uninstall:
-	cd scripts && ./uninstall.sh
+deinstall:
+	cd scripts && ./deinstall.sh
 
 clean:
 	cd scripts && ./clean.sh

@@ -12,13 +12,35 @@ fi
 # This variable allows getting back to this repo
 CWD="$(realpath)"
 
+libobjc2() {
+  local repo_dir="${SRC}/libobjc2"
+  local build_dir="${repo_dir}/Build"
+
+  # Check if Build directory exists
+  if [ ! -d "$build_dir" ]; then
+    mkdir "$build_dir"
+  fi
+
+  # Change to Build directory and configure/build the project
+  (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
+  (cd "$build_dir" && ninja install)
+}
+
+gnustep()
+{
+  cd ${SRC}/tools-make && ./configure && gmake && gmake install
+  . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
+  cd ${SRC}/libs-base && ./configure && gmake && gmake install
+  cd ${SRC}/libs-gui && ./configure && gmake && gmake install
+  cd ${SRC}/libs-back && ./configure && gmake && gmake install
+}
+
 apps()
 {
-  . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
-  cd ${SRC}/apps-gworkspace && gmake install
-  cd ${SRC}/apps-systempreferences && gmake install
-  cd ${SRC}/gap/system-apps/Terminal && gmake install
-  cd ${SRC}/gs-textedit && gmake install
+  cd ${SRC}/apps-gworkspace && ./configure && gmake && gmake install
+  cd ${SRC}/apps-systempreferences && gmake && gmake install
+  cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
+  cd ${SRC}/gs-textedit && gmake && gmake install
 }
 
 services()
@@ -94,6 +116,8 @@ defaults() {
   done < "$DEFAULTS_CONF"
 }
 
+libobjc2
+gnustep
 apps
 services
 sysctl
