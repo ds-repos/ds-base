@@ -14,7 +14,7 @@ fi
 
 apps()
 { 
-  cd ${SRC}/gs-textedit && && gmake uninstall
+  cd ${SRC}/gs-textedit && gmake uninstall
   cd ${SRC}/gap/system-apps/Terminal && gmake uninstall
   cd ${SRC}/apps-systempreferences && gmake uninstall
   cd ${SRC}/apps-gworkspace && gmake uninstall
