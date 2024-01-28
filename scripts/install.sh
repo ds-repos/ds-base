@@ -36,7 +36,7 @@ gnustep()
   local install_prefix="/opt"
 
   cd ${SRC}/tools-make && ./configure --prefix=${install_prefix} && gmake && gmake install
-  . ${install_prefix}/System/Library/Makefiles/GNUstep.sh
+  . ${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh
   cd ${SRC}/libs-base && ./configure --prefix=${install_prefix} && gmake && gmake install
   cd ${SRC}/libs-gui && ./configure --prefix=${install_prefix} && gmake && gmake install
   cd ${SRC}/libs-back && ./configure --prefix=${install_prefix} && gmake && gmake install

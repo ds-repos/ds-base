@@ -1,5 +1,5 @@
 #!/bin/sh
 
-. /usr/local/share/GNUstep/Makefiles/GNUstep.sh
+. /opt/share/GNUstep/Makefiles/GNUstep.sh
 
 exec openapp GWorkspace
