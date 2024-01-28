@@ -9,31 +9,7 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
-# Source GNUstep.sh
- . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
-
-apps()
-{ 
-  cd ${SRC}/gs-textedit && gmake uninstall
-  cd ${SRC}/gap/system-apps/Terminal && gmake uninstall
-  cd ${SRC}/apps-systempreferences && gmake uninstall
-  cd ${SRC}/apps-gworkspace && gmake uninstall
-}
-
-gnustep()
+remove_opt()
 {
-  cd ${SRC}/libs-base && gmake uninstall
-  cd ${SRC}/libs-gui && gmake uninstall
-  cd ${SRC}/libs-back && gmake uninstall
-  cd ${SRC}/tools-make && gmake uninstall
+  rm -rf /opt
 }
-
-libobjc2()
-{
-  cd ${SRC}/libobjc2/Build && \
-    ninja uninstall
-}
-
-apps
-gnustep
-libobjc2

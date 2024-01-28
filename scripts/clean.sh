@@ -21,70 +21,7 @@ if [ ! -d "${SRC}" ]; then
     exit 0
 fi
 
-libobjc2()
+remove_source()
 {
-  # Check if the directory exists before running ninja clean
-  if [ -d "${SRC}/libobjc2/Build" ]; then
-    cd ${SRC}/libobjc2 && cd Build && ninja clean
-  fi
+  rm -rf /gnustep-src
 }
-
-gnustep()
-{
-  # tools-make does not need cleaning so we skip and do others
-  # We must reinstall tools-make to be able to clean items from here
-
-  # Check if the directory exists before running configure and make
-  if [ -d "${SRC}/tools-make" ]; then
-    cd ${SRC}/tools-make && ./configure && gmake && gmake install
-  fi
-
-  # Check if GNUstep.sh exists before sourcing it
-  if [ -f "/usr/local/share/GNUstep/Makefiles/GNUstep.sh" ]; then
-    . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
-  else
-    exit 0
-  fi
-
-  # Check if the directory exists before running gmake clean
-  if [ -d "${SRC}/libs-base" ]; then
-    cd ${SRC}/libs-base && gmake clean
-  fi
-
-  # Check if the directory exists before running gmake clean
-  if [ -d "${SRC}/libs-gui" ]; then
-    cd ${SRC}/libs-gui && gmake clean
-  fi
-
-  # Check if the directory exists before running gmake clean
-  if [ -d "${SRC}/libs-back" ]; then
-    cd ${SRC}/libs-back && gmake clean
-  fi
-}
-
-apps()
-{
-  # Check if the directory exists before running gmake clean
-  if [ -d "${SRC}/apps-gworkspace" ]; then
-    cd ${SRC}/apps-gworkspace && gmake clean
-  fi
-
-  # Check if the directory exists before running gmake clean
-  if [ -d "${SRC}/apps-systempreferences" ]; then
-    cd ${SRC}/apps-systempreferences && gmake clean
-  fi
-
-  # Check if the directory exists before running gmake clean
-  if [ -d "${SRC}/gap/system-apps/Terminal" ]; then
-    cd ${SRC}/gap/system-apps/Terminal && gmake clean
-  fi
-
-  # Check if the directory exists before running gmake clean
-  if [ -d "${SRC}/gs-textedit" ]; then
-    cd ${SRC}/gs-textedit && gmake clean
-  fi
-}
-
-libobjc2
-gnustep
-apps
