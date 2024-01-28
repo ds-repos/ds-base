@@ -57,6 +57,11 @@ apps()
   cd ${SRC}/gs-textedit && gmake && gmake install
 }
 
+overlay()
+{
+  cp -R ../overlay/ /
+}
+
 sysctl()
 {
   cd ${CWD} &&  cat ../conf/sysctl.conf | xargs dsbwrtsysctl
@@ -139,11 +144,6 @@ groups()
   done
 }
 
-overlay()
-{
-  cp -R ../overlay/ /
-}
-
 profile()
 {
   # Iterate over all users with UID between 1000 and 2000
@@ -191,12 +191,12 @@ defaults() {
 libobjc2
 gnustep
 apps
+overlay
 sysctl
 modules
 bonjour
 services
 sudoers
 groups
-overlay
 profile
 defaults
