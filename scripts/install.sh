@@ -47,9 +47,9 @@ apps()
   local install_prefix="/opt"
 
   cd ${SRC}/apps-gworkspace && ./configure --prefix=${install_prefix} && gmake && gmake install
-  cd ${SRC}/apps-systempreferences && ./configure --prefix=${install_prefix} && gmake && gmake install
-  cd ${SRC}/gap/system-apps/Terminal && ./configure --prefix=${install_prefix} && gmake && gmake install
-  cd ${SRC}/gs-textedit && ./configure --prefix=${install_prefix} && gmake && gmake install
+  cd ${SRC}/apps-systempreferences && gmake && gmake install
+  cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
+  cd ${SRC}/gs-textedit && gmake && gmake install
 }
 
 services()
