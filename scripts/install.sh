@@ -37,6 +37,7 @@ gnustep() {
   # Check if GNUstep.sh exists
   if [ -f "${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh" ]; then
     echo "GNUstep.sh already exists. Skipping installation."
+    . "${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh"
   else
     cd "${SRC}/tools-make" && ./configure --prefix="${install_prefix}" && gmake && gmake install
     . "${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh"
