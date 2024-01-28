@@ -59,12 +59,12 @@ apps()
 
 overlay()
 {
-  cp -R ../overlay/ /
+  cd ${CWD} && cp -R ../overlay/ /
 }
 
 sysctl()
 {
-  cd ${CWD} &&  cat ../conf/sysctl.conf | xargs dsbwrtsysctl
+  cat ../conf/sysctl.conf | xargs dsbwrtsysctl
   service sysctl restart
 }
 
