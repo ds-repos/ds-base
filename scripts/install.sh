@@ -33,7 +33,7 @@ libobjc2() {
 
 gnustep()
 {
-  local install_prefix="/opt/GNUstep"
+  local install_prefix="/opt"
 
   cd ${SRC}/tools-make && ./configure --prefix=${install_prefix} && gmake && gmake install
   . ${install_prefix}/System/Library/Makefiles/GNUstep.sh
@@ -44,7 +44,7 @@ gnustep()
 
 apps()
 {
-  local install_prefix="/opt/GNUstep"
+  local install_prefix="/opt"
 
   cd ${SRC}/apps-gworkspace && ./configure --prefix=${install_prefix} && gmake && gmake install
   cd ${SRC}/apps-systempreferences && ./configure --prefix=${install_prefix} && gmake && gmake install
