@@ -1,5 +1,3 @@
-kld_list="cuse i915kms"
-webcamd_enable="YES"
 vboxguest_enable="YES"
 vboxservice_enable="YES"
 vboxservice_flags="--disable-timesync"

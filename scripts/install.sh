@@ -57,14 +57,48 @@ apps()
   cd ${SRC}/gs-textedit && gmake && gmake install
 }
 
-services()
-{
-  cd ${CWD} && cat ../conf/rc.conf | xargs sysrc
-}
-
 sysctl()
 {
   cd ${CWD} &&  cat ../conf/sysctl.conf | xargs dsbwrtsysctl
+  service sysctl restart
+}
+
+modules()
+{
+  # Path to modules.conf file
+  MODULES_CONF="../conf/modules.conf"
+
+  # Read each line in modules.conf and add to kld_list in /etc/rc.conf
+  while IFS= read -r module; do
+  # Trim leading and trailing whitespaces
+  module=$(echo "$module" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
+
+  # Check if the module is not empty
+  if [ -n "$module" ]; then
+    # Use sysrc to add the module to kld_list in /etc/rc.conf
+    sysrc -f /etc/rc.conf kld_list+="$module"
+    echo "Added module: $module"
+  fi
+  done < "$MODULES_CONF"
+  service kld restart
+}
+
+services()
+{
+  # Directory path
+  RC_CONF_D="/etc/rc.conf.d/"
+
+  # Iterate over files in /etc/rc.conf.d/
+  for file in "$RC_CONF_D"/*; do
+  # Extract the service name from the file
+  service=$(basename "$file")
+
+  # Check if the file is a regular file (not a directory)
+  if [ -f "$file" ]; then
+    # Run service $service start
+    service "$service" start
+  fi
+  done
 }
 
 sudoers()
@@ -137,8 +171,9 @@ defaults() {
 libobjc2
 gnustep
 apps
-services
 sysctl
+modules
+services
 sudoers
 groups
 overlay
