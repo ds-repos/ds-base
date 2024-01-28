@@ -8,6 +8,7 @@ install:
 	cd scripts && ./install.sh
 
 deinstall:
+	cd scripts && ./clean.sh
 	cd scripts && ./deinstall.sh
 
 clean:
