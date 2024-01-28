@@ -27,7 +27,7 @@ To install `bsdstep`, follow these steps:
    make install
    ```
 
-   This will install essential packages like cmake, ninja, mdnsresponder, libdispatch, and build GNUstep along with customized applications.
+   This will install essential packages like cmake, ninja, mdnsresponder, and build GNUstep along with customized applications.
 
    ## Customization
 
