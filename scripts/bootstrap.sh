@@ -11,7 +11,7 @@ fi
 
 packages()
 {
-  cat ../conf/ports.conf | xargs pkg install -fy
+  cat ../conf/ports.conf | xargs pkg install -y
 }
 
 packages
