@@ -101,6 +101,9 @@ services() {
   # Directory path
   RC_CONF_D="/etc/rc.conf.d/"
 
+  # Full path to the service command
+  SERVICE_PATH=$(which service)
+
   # Iterate over files in /etc/rc.conf.d/
   for file in "$RC_CONF_D"/*; do
     # Extract the service name from the file
@@ -108,8 +111,11 @@ services() {
 
     # Check if the file is a regular file (not a directory)
     if [ -f "$file" ]; then
-      # Run service $service start
-      service "$service" start
+      echo "Running service $service start"
+      # Run service $service start using the full path
+      "$SERVICE_PATH" "$service" start
+    else
+      echo "File $file is not a regular file. Skipping."
     fi
   done
 }
