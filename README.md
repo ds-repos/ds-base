@@ -9,16 +9,20 @@ The `bsdstep` project aims to build GNUstep on FreeBSD, providing a platform wit
 
 To install `bsdstep`, follow these steps:
 
-1. Fetch the zip archive:
+1. Switch to root user
+   ```
+   su -
+   ```
+2. Fetch the zip archive:
    ```
    fetch https://codeload.github.com/pkgdemon/bsdstep/zip/refs/heads/main -o bsdstep.zip
    ```
-2. Extract the archive and navigate to the project directory:
+3. Extract the archive and navigate to the project directory:
    ```
    unzip bsdstep.zip
-   cd bsdstep
+   cd bsdstep-main
    ```
-3. Build and install the project as root:
+4. Build and install the project as root:
    ```
    make install
    ```
