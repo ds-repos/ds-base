@@ -76,13 +76,15 @@ overlay()
   cp -R ../overlay/ /
 }
 
-xinitrc()
+profile()
 {
   # Iterate over all users with UID between 1000 and 2000
   getent passwd | while IFS=: read -r username _ uid _; do
       if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
           # Install xinitrc for the user
           install -o jmaloney -m 644 /usr/share/skel/dot.xinitrc /home/"$username"/.xinitrc
+          # Change users shell to zsh
+          chsh -s /usr/local/bin/zsh "$username"
       fi
   done 
 }
@@ -124,5 +126,5 @@ sysctl
 sudoers
 groups
 overlay
-xinitrc
+profile
 defaults
