@@ -31,22 +31,26 @@ libobjc2() {
   export LIBRARY_PATH=/opt/lib:$LIBRARY_PATH
 }
 
-gnustep()
-{
+gnustep() {
   local install_prefix="/opt"
-
-  cd ${SRC}/tools-make && ./configure --prefix=${install_prefix} && gmake && gmake install
-  . ${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh
-  cd ${SRC}/libs-base && ./configure --prefix=${install_prefix} && gmake && gmake install
-  cd ${SRC}/libs-gui && ./configure --prefix=${install_prefix} && gmake && gmake install
-  cd ${SRC}/libs-back && ./configure --prefix=${install_prefix} && gmake && gmake install
+  
+  # Check if GNUstep.sh exists
+  if [ -f "${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh" ]; then
+    echo "GNUstep.sh already exists. Skipping installation."
+  else
+    cd "${SRC}/tools-make" && ./configure --prefix="${install_prefix}" && gmake && gmake install
+    . "${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh"
+    cd "${SRC}/libs-base" && ./configure --prefix="${install_prefix}" && gmake && gmake install
+    cd "${SRC}/libs-gui" && ./configure --prefix="${install_prefix}" && gmake && gmake install
+    cd "${SRC}/libs-back" && ./configure --prefix="${install_prefix}" && gmake && gmake install
+    cd "${SRC}/apps-gworkspace" && ./configure --prefix="${install_prefix}" && gmake && gmake install
+  fi
 }
 
 apps()
 {
   local install_prefix="/opt"
 
-  cd ${SRC}/apps-gworkspace && ./configure --prefix=${install_prefix} && gmake && gmake install
   cd ${SRC}/apps-systempreferences && gmake && gmake install
   cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
   cd ${SRC}/gs-textedit && gmake && gmake install
