@@ -30,8 +30,7 @@ checkout()
 
     if [ -d "$repo_dir" ]; then
       # Directory exists, perform git pull
-      echo "Updating repository: $repo_name"
-      cd "$repo_dir" && git pull
+      echo "Repository exists: $repo_name"
       if [ $? -ne 0 ]; then
         echo "Error updating repository: $repo_name"
       fi
