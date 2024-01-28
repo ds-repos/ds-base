@@ -22,25 +22,34 @@ libobjc2() {
   fi
 
   # Change to Build directory and configure/build the project
-  (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
+  (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_INSTALL_PREFIX=/opt)
   (cd "$build_dir" && ninja install)
+
+  # Set up environment variables for libobjc2
+  export LD_LIBRARY_PATH=/opt/lib:$LD_LIBRARY_PATH
+  export C_INCLUDE_PATH=/opt/include:$C_INCLUDE_PATH
+  export LIBRARY_PATH=/opt/lib:$LIBRARY_PATH
 }
 
 gnustep()
 {
-  cd ${SRC}/tools-make && ./configure && gmake && gmake install
-  . /usr/local/share/GNUstep/Makefiles/GNUstep.sh
-  cd ${SRC}/libs-base && ./configure && gmake && gmake install
-  cd ${SRC}/libs-gui && ./configure && gmake && gmake install
-  cd ${SRC}/libs-back && ./configure && gmake && gmake install
+  local install_prefix="/opt/GNUstep"
+
+  cd ${SRC}/tools-make && ./configure --prefix=${install_prefix} && gmake && gmake install
+  . ${install_prefix}/System/Library/Makefiles/GNUstep.sh
+  cd ${SRC}/libs-base && ./configure --prefix=${install_prefix} && gmake && gmake install
+  cd ${SRC}/libs-gui && ./configure --prefix=${install_prefix} && gmake && gmake install
+  cd ${SRC}/libs-back && ./configure --prefix=${install_prefix} && gmake && gmake install
 }
 
 apps()
 {
-  cd ${SRC}/apps-gworkspace && ./configure && gmake && gmake install
-  cd ${SRC}/apps-systempreferences && gmake && gmake install
-  cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
-  cd ${SRC}/gs-textedit && gmake && gmake install
+  local install_prefix="/opt/GNUstep"
+
+  cd ${SRC}/apps-gworkspace && ./configure --prefix=${install_prefix} && gmake && gmake install
+  cd ${SRC}/apps-systempreferences && ./configure --prefix=${install_prefix} && gmake && gmake install
+  cd ${SRC}/gap/system-apps/Terminal && ./configure --prefix=${install_prefix} && gmake && gmake install
+  cd ${SRC}/gs-textedit && ./configure --prefix=${install_prefix} && gmake && gmake install
 }
 
 services()
