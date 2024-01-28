@@ -83,17 +83,18 @@ modules()
   service kld restart
 }
 
-bonjour()
-{
+bonjour() {
   NSSWITCH_CONF="/etc/nsswitch.conf"
 
-  # Check if the hosts line contains mdns between files and dns
-  if grep -q '^hosts:[[:space:]]*files[[:space:]]\+dns' "$NSSWITCH_CONF"; then
-    echo "mdns is already present in the hosts line."
+  # Check if mdns is already present before dns in the hosts line
+  if ! grep -q '^hosts:[[:space:]]*files[[:space:]]\+mdns[[:space:]]\+dns' "$NSSWITCH_CONF"; then
+    # Add mdns before dns in the hosts line
+    awk '/^hosts:/ {gsub(/dns/, "mdns dns"); print; next} 1' "$NSSWITCH_CONF" > "$NSSWITCH_CONF.tmp" && \
+    mv "$NSSWITCH_CONF.tmp" "$NSSWITCH_CONF"
+    
+    echo "mdns added before dns in the hosts line."
   else
-    # Add mdns between files and dns
-    sed -i '' -E '/^hosts:/ s/(files[[:space:]]+dns)/\1 mdns/' "$NSSWITCH_CONF"
-    echo "mdns added to the hosts line."
+    echo "mdns is already present before dns in the hosts line."
   fi
 }
 
