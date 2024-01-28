@@ -25,3 +25,5 @@ remove_source()
 {
   rm -rf /gnustep-src
 }
+
+remove_source

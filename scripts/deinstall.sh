@@ -13,3 +13,5 @@ remove_opt()
 {
   rm -rf /opt
 }
+
+remove_opt
