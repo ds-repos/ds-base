@@ -83,6 +83,20 @@ modules()
   service kld restart
 }
 
+bonjour()
+{
+  NSSWITCH_CONF="/etc/nsswitch.conf"
+
+  # Check if the hosts line contains mdns between files and dns
+  if grep -q '^hosts:[[:space:]]*files[[:space:]]\+dns' "$NSSWITCH_CONF"; then
+    echo "mdns is already present in the hosts line."
+  else
+    # Add mdns between files and dns
+    sed -i '' -E '/^hosts:/ s/(files[[:space:]]+dns)/\1 mdns/' "$NSSWITCH_CONF"
+    echo "mdns added to the hosts line."
+  fi
+}
+
 services()
 {
   # Directory path
@@ -99,22 +113,6 @@ services()
     service "$service" start
   fi
   done
-}
-
-bonjour()
-{
-  #!/bin/sh
-
-NSSWITCH_CONF="/etc/nsswitch.conf"
-
-# Check if the hosts line contains mdns between files and dns
-if grep -q '^hosts:[[:space:]]*files[[:space:]]\+dns' "$NSSWITCH_CONF"; then
-    echo "mdns is already present in the hosts line."
-else
-    # Add mdns between files and dns
-    sed -i '' -E '/^hosts:/ s/(files[[:space:]]+dns)/\1 mdns/' "$NSSWITCH_CONF"
-    echo "mdns added to the hosts line."
-fi
 }
 
 sudoers()
@@ -189,8 +187,8 @@ gnustep
 apps
 sysctl
 modules
-services
 bonjour
+services
 sudoers
 groups
 overlay
