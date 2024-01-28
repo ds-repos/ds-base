@@ -97,21 +97,20 @@ bonjour()
   fi
 }
 
-services()
-{
+services() {
   # Directory path
   RC_CONF_D="/etc/rc.conf.d/"
 
   # Iterate over files in /etc/rc.conf.d/
   for file in "$RC_CONF_D"/*; do
-  # Extract the service name from the file
-  service=$(basename "$file")
+    # Extract the service name from the file
+    service=$(basename "$file")
 
-  # Check if the file is a regular file (not a directory)
-  if [ -f "$file" ]; then
-    # Run service $service start
-    service "$service" start
-  fi
+    # Check if the file is a regular file (not a directory)
+    if [ -f "$file" ]; then
+      # Run service $service start
+      service "$service" start
+    fi
   done
 }
 
