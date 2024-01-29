@@ -6,13 +6,15 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 
-# Source build.conf
-. ../conf/build.conf
-
-remove_opt()
+remove_local()
 {
   rm -rf /Local
+}
+
+remove_system()
+{
   rm -rf /System
 }
 
-remove_opt
+remove_local
+remove_system

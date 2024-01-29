@@ -42,36 +42,28 @@ libobjc2() {
     (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
     (cd "$build_dir" && ninja install)
   fi
-
-  rm -rf /gnustep-src/libobjc2
-
-  # Set up environment variables for libobjc2
-  # export LD_LIBRARY_PATH=/Local/Library/Libraries:$LD_LIBRARY_PATH
-  # export C_INCLUDE_PATH=/Local/Library/Headers:$C_INCLUDE_PATH
-  # export LIBRARY_PATH=/Local/Library/Libraries:$LIBRARY_PATH
 }
 
 gnustep() {
-  local install_prefix="/"
   if [ -d "/Local/Library/Libraries/gnustep-base/" ] ; then
     echo "gnustep-base already exists. Skipping installation."
   else
-    cd "${SRC}/libs-base" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+    cd "${SRC}/libs-base" && ./configure && gmake && gmake install
   fi
   if [ -d "/Local/Library/PostScript/" ] ; then
     echo "libs-gui already exists.  Skipping installation."
   else
-    cd "${SRC}/libs-gui" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+    cd "${SRC}/libs-gui" && ./configure && gmake && gmake install
   fi
   if [ -d "/Local/Library/Fonts" ] ; then
     echo "libs-back already exists. Skipping installation."
   else
-    cd "${SRC}/libs-back" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+    cd "${SRC}/libs-back" && ./configure && gmake && gmake install
   fi
   if [ -d "/Local/Applications/GWorkspace.app" ] ; then
     echo "Gworkspace already exists.  Skipping installation."
   else
-    cd "${SRC}/apps-gworkspace" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+    cd "${SRC}/apps-gworkspace" && ./configure && gmake && gmake install
   fi
 }
 
