@@ -42,6 +42,11 @@ libobjc2() {
     (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
     (cd "$build_dir" && ninja install)
   fi
+  
+  # Set up environment variables for libobjc2
+  export LD_LIBRARY_PATH=/Local/Library/Libraries:$LD_LIBRARY_PATH
+  export C_INCLUDE_PATH=/Local/Library/Headers:$C_INCLUDE_PATH
+  export LIBRARY_PATH=/Local/Library/Libraries:$LIBRARY_PATH
 }
 
 gnustep() {
