@@ -63,7 +63,9 @@ gnustep() {
   fi
   if [ -d "/Local/Applications/GWorkspace.app" ] ; then
     echo "Gworkspace already exists.  Skipping installation."
-  cd "${SRC}/apps-gworkspace" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+  else
+    cd "${SRC}/apps-gworkspace" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+  fi
 }
 
 apps()
