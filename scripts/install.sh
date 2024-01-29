@@ -12,6 +12,20 @@ fi
 # This variable allows getting back to this repo
 CWD="$(realpath)"
 
+gnustep-make() {
+  local install_prefix="/"
+
+  # Check if GNUstep.sh exists
+  if [ -f "/System/Library/Makefiles/GNUstep.sh" ]; then
+    echo "tools-make already exists. Skipping installation."
+    . /System/Library/Makefiles/GNUstep.sh
+  else
+    cd "${SRC}/tools-make" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+    . /System/Library/Makefiles/GNUstep.sh
+  fi
+}
+
+
 libobjc2() {
   local repo_dir="${SRC}/libobjc2"
   local build_dir="${repo_dir}/Build"
@@ -22,36 +36,38 @@ libobjc2() {
   fi
 
   # Change to Build directory and configure/build the project
-  (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_INSTALL_PREFIX=/opt)
-  (cd "$build_dir" && ninja install)
-
-  # Set up environment variables for libobjc2
-  export LD_LIBRARY_PATH=/opt/lib:$LD_LIBRARY_PATH
-  export C_INCLUDE_PATH=/opt/include:$C_INCLUDE_PATH
-  export LIBRARY_PATH=/opt/lib:$LIBRARY_PATH
+  if [ -f "/Local/Library/Headers/Block.h" ] ; then
+    echo "libobjc already exists. Skipping installation."
+  else
+    (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
+    (cd "$build_dir" && ninja install)
+  fi
 }
 
 gnustep() {
-  local install_prefix="/opt"
-  
-  # Check if GNUstep.sh exists
-  if [ -f "${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh" ]; then
-    echo "GNUstep.sh already exists. Skipping installation."
-    . "${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh"
+  local install_prefix="/"
+  if [ -d "/Local/Library/Libraries/gnustep-base/" ] ; then
+    echo "gnustep-base already exists. Skipping installation."
   else
-    cd "${SRC}/tools-make" && ./configure --prefix="${install_prefix}" && gmake && gmake install
-    . "${install_prefix}/share/GNUstep/Makefiles/GNUstep.sh"
-    cd "${SRC}/libs-base" && ./configure --prefix="${install_prefix}" && gmake && gmake install
-    cd "${SRC}/libs-gui" && ./configure --prefix="${install_prefix}" && gmake && gmake install
-    cd "${SRC}/libs-back" && ./configure --prefix="${install_prefix}" && gmake && gmake install
-    cd "${SRC}/apps-gworkspace" && ./configure --prefix="${install_prefix}" && gmake && gmake install
+    cd "${SRC}/libs-base" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
   fi
+  if [ -d "/Local/Library/PostScript/" ] ; then
+    echo "libs-gui already exists.  Skipping installation."
+  else
+    cd "${SRC}/libs-gui" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+  fi
+  if [ -d "/Local/Library/Fonts" ] ; then
+    echo "libs-back already exists. Skipping installation."
+  else
+    cd "${SRC}/libs-back" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+  fi
+  if [ -d "/Local/Applications/GWorkspace.app" ] ; then
+    echo "Gworkspace already exists.  Skipping installation."
+  cd "${SRC}/apps-gworkspace" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
 }
 
 apps()
 {
-  local install_prefix="/opt"
-
   cd ${SRC}/apps-systempreferences && gmake && gmake install
   cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
   cd ${SRC}/gs-textedit && gmake && gmake install
@@ -188,6 +204,7 @@ defaults() {
   done < "$DEFAULTS_CONF"
 }
 
+gnustep-make
 libobjc2
 gnustep
 apps
