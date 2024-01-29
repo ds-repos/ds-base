@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. /opt/share/GNUstep/Makefiles/GNUstep.sh
+. /System/Library/Makefiles/GNUstep.sh
 
 VBoxClient --display
 
