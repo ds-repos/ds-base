@@ -13,14 +13,12 @@ fi
 CWD="$(realpath)"
 
 gnustep-make() {
-  local install_prefix="/"
-
   # Check if GNUstep.sh exists
   if [ -f "/System/Library/Makefiles/GNUstep.sh" ]; then
     echo "tools-make already exists. Skipping installation."
     . /System/Library/Makefiles/GNUstep.sh
   else
-    cd "${SRC}/tools-make" && ./configure --prefix="${install_prefix}" --with-layout=gnustep && gmake && gmake install
+    cd "${SRC}/tools-make" && ./configure --with-layout=mac && gmake && gmake install
     . /System/Library/Makefiles/GNUstep.sh
   fi
 }
