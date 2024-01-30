@@ -18,7 +18,15 @@ gnustep-make() {
     echo "tools-make already exists. Skipping installation."
     . /System/Library/Makefiles/GNUstep.sh
   else
-    cd "${SRC}/tools-make" && ./configure --with-layout=mac && gmake && gmake install
+    cd "${SRC}/tools-make" && ./configure \
+      --with-thread-lib=-pthread \
+      ---with-layout=gnustep \
+      --with-config-file=${GNUSTEP_PREFIX}/GNUstep.conf \
+      --with-layout=gnustep \
+      --enable-objc-nonfragile-abi \
+      --enable-native-objc-exceptions \
+      --with-library-combo=ng-gnu-gnu \
+       && gmake && gmake install
     . /System/Library/Makefiles/GNUstep.sh
   fi
 }
@@ -43,20 +51,42 @@ libobjc2() {
 }
 
 gnustep() {
+  local LOCALBASE="/usr/local"
   if [ -d "/Local/Library/Libraries/gnustep-base/" ] ; then
     echo "gnustep-base already exists. Skipping installation."
   else
-    cd "${SRC}/libs-base" && ./configure && gmake && gmake install
+    cd "${SRC}/libs-base" && ./configure \
+      --disable-procfs \
+      --with-installation-domain=SYSTEM \
+      --with-zeroconf-api=mdns \
+      && gmake && gmake install
   fi
   if [ -d "/Local/Library/PostScript/" ] ; then
     echo "libs-gui already exists.  Skipping installation."
   else
-    cd "${SRC}/libs-gui" && ./configure && gmake && gmake install
+    cd "${SRC}/libs-gui" && ./configure \
+      --with-tiff-library=${LOCALBASE}/lib \
+      --with-tiff-include=${LOCALBASE}/include \
+      --with-jpeg-library=${LOCALBASE}/lib \
+      --with-jpeg-include=${LOCALBASE}/include \
+      --with-x \
+      --with-x-include=${LOCALBASE}/include \
+      --with-x-include=${LOCALBASE}/lib \
+      && gmake && gmake install
   fi
   if [ -d "/Local/Library/Fonts" ] ; then
     echo "libs-back already exists. Skipping installation."
   else
-    cd "${SRC}/libs-back" && ./configure && gmake && gmake install
+    cd "${SRC}/libs-back" && ./configure \
+      --with-tiff-library=${LOCALBASE}/lib \
+      --with-tiff-include=${LOCALBASE}/include \
+      --with-jpeg-library=${LOCALBASE}/lib \
+      --with-jpeg-include=${LOCALBASE}/include \
+      --with-gif-library=${LOCALBASE}/lib \
+      --with-gif-include=${LOCALBASE}/include \
+      --enable-graphics=cairo \
+      --disable-glitz \
+      && gmake && gmake install
   fi
   if [ -d "/Local/Applications/GWorkspace.app" ] ; then
     echo "Gworkspace already exists.  Skipping installation."
