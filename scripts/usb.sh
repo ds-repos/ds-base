@@ -66,6 +66,7 @@ image()
   # Build image
   if [ -d "/mnt/var/cache/pkg" ] ; then umount /mnt/var/cache/pkg ; fi
   umount -f /mnt/dev >/dev/null 2>/dev/null || true
+  umount -f /dev/md0p1 >/dev/null 2>/dev/null || true
 
   zpool destroy ${PRODUCT} >/dev/null 2>/dev/null || true
   
@@ -82,7 +83,7 @@ image()
   mount -t msdosfs /dev/md0p1 /mnt
   mkdir -p /mnt/EFI/BOOT
   cp /${ZPOOL}/${PRODUCT}/poudriere/jails/${PRODUCT}/boot/loader.efi /mnt/EFI/BOOT/BOOTX64.efi
-  umount /mnt
+  umount -f /dev/md0p1
 
   zpool create -f -o cachefile=/tmp/zpool.cache -O mountpoint=none -O atime=off -O canmount=off -O compression=zstd-9 ${PRODUCT} /dev/md0p2
   zfs create -o canmount=off ${PRODUCT}/ROOT
