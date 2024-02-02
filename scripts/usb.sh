@@ -97,8 +97,8 @@ image()
   chroot /mnt mkdir -p /Users/hexley/Downloads
   chroot /mnt pw useradd hexley -u 1000 \
   -c "Hexley" -d "/Users/hexley" \
-  -g wheel -G video -G webcamd -m -s /usr/local/bin/zsh -k /usr/share/skel -w none
-  chroot /mnt chown -R hexley:hexley /home/hexley
+  -g wheel -m -s /usr/local/bin/zsh -k /usr/share/skel -w none
+  chroot /mnt chown -R hexley /home/hexley
 
   chroot /mnt /bin/sh <<EOF
 
