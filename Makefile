@@ -13,3 +13,6 @@ deinstall:
 
 clean:
 	cd scripts && ./clean.sh
+
+usb:
+	cd scripts && ./usb.sh
