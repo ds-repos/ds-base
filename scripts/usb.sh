@@ -64,7 +64,8 @@ jail()
 image()
 {
   # Build image
-  if [ -d "/mnt/var/cache/pkg" ] ; then umount /mnt/var/cache/pkg ; fi 
+  if [ -d "/mnt/var/cache/pkg" ] ; then umount /mnt/var/cache/pkg ; fi
+  umount -f /mnt/dev >/dev/null 2>/dev/null || true
 
   zpool destroy ${PRODUCT} >/dev/null 2>/dev/null || true
   
@@ -91,6 +92,7 @@ image()
   cp /etc/resolv.conf /mnt/etc/resolv.conf
   mkdir /mnt/var/cache/pkg
   mount -t nullfs /${ZPOOL}/${PRODUCT}/cache/pkg /mnt/var/cache/pkg
+  mount -t devfs devfs /mnt/dev
 
   chroot /mnt mkdir -p /Users/hexley/Desktop
   chroot /mnt mkdir -p /Users/hexley/Documents
@@ -122,6 +124,7 @@ exit
 
 EOF
   
+  umount /mnt/dev
   umount /mnt/var/cache/pkg
   rmdir /mnt/var/cache/pkg
   rm -rf /mnt/usr/src
