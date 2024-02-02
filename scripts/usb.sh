@@ -105,6 +105,26 @@ image()
 
   chroot /mnt /bin/sh <<EOF
 
+# Configure loader.conf for USB
+echo 'kern.geom.label.disk_ident.enable="0"' | tee -a /boot/loader.conf.local
+echo 'kern.geom.label.gptid.enable="0"' | tee -a /boot/loader.conf.local
+echo 'cryptodev_load="YES"' | tee -a /boot/loader.conf.local
+echo 'zfs_load="YES"' | tee -a /boot/loader.conf.local
+echo 'autoboot_delay="-1"' | tee -a /boot/loader.conf.local
+
+# Configure rc.conf for USB
+sysrc hostname="bsdstep"
+sysrc ifconfig_DEFAULT="DHCP inet6 accept_rtadv"
+sysrc sshd_enable="YES"
+sysrc ntpd_enable="YES"
+sysrc ntpd_sync_on_start="YES"
+sysrc dumpdev="NO"
+sysrc zfs_enable="YES"
+sysrc growfs_enable="YES"
+
+# Create fstab
+touch /etc/fstab
+
 # Fetch the bsdstep zip from GitHub
 fetch https://codeload.github.com/pkgdemon/bsdstep/zip/refs/heads/main -o bsdstep.zip
 

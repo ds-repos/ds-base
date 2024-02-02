@@ -1,2 +1,2 @@
 mdnsresponderposix_enable="YES"
-mdnsresponderposix_flags="-n $hostname"
+mdnsresponderposix_flags="-n bsdstep"
