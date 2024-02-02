@@ -72,7 +72,7 @@ image()
   if [ -c "/dev/md0" ] ; then mdconfig -d -u 0 ; fi
   if [ -f "/${ZPOOL}/${PRODUCT}/${PRODUCT}.img" ] ; then rm /${ZPOOL}/${PRODUCT}/${PRODUCT}.img ; fi
   
-  truncate -s 2g /${ZPOOL}/${PRODUCT}/${PRODUCT}.img
+  truncate -s 6g /${ZPOOL}/${PRODUCT}/${PRODUCT}.img
   mdconfig -f /${ZPOOL}/${PRODUCT}/${PRODUCT}.img -u 0
   
   gpart create -s gpt md0
