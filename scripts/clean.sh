@@ -24,13 +24,18 @@ device()
 {
   if [ -b "/dev/md0" ] ; then mdconfig -d -u 0 ; fi
 }
+
 jail()
 {
-  # Check if jail exists
-  poudriere -e ../conf jail -l | grep -q ${PRODUCT}
-  if [ $? -eq 0 ] ; then
-    # If jail exists remove it
-    yes | poudriere -e ../conf  jail -d -j ${PRODUCT}
+  if [ ! -f "/usr/local/etc/poudriere.conf" ] ; then
+    return 0
+  else
+    # Check if jail exists
+    poudriere -e ../conf jail -l | grep -q ${PRODUCT}
+    if [ $? -eq 0 ] ; then
+      # If jail exists remove it
+      yes | poudriere -e ../conf  jail -d -j ${PRODUCT}
+    fi
   fi
 }
 
