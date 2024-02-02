@@ -7,8 +7,8 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # Source config for environment variables
-. ../config/build.conf
-. ../config/poudriere.conf
+. ../conf/build.conf
+. ../conf/poudriere.conf
 
 datasets()
 {
