@@ -205,9 +205,9 @@ profile()
   getent passwd | while IFS=: read -r username _ uid _; do
       if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
           # Install .xinitrc for the user
-          install -o jmaloney -m 644 /usr/share/skel/dot.xinitrc /Users/"$username"/.xinitrc
+          install -o 1000 -m 644 /usr/share/skel/dot.xinitrc /Users/"$username"/.xinitrc
           # Install .zshrc for the user
-          install -o jmaloney -m 644 /usr/share/skel/dot.zshrc /Users/"$username"/.zshrc
+          install -o 1000 -m 644 /usr/share/skel/dot.zshrc /Users/"$username"/.zshrc
           # Change users shell to zsh
           chsh -s /usr/local/bin/zsh "$username"
       fi
