@@ -151,6 +151,10 @@ bonjour() {
 }
 
 services() {
+  if [ -d "/Users/hexley" ]; then
+    echo "Running inside builder image. Skipping service startup."
+    return 0
+  else
   # Directory path
   RC_CONF_D="/etc/rc.conf.d/"
 
@@ -171,6 +175,7 @@ services() {
       echo "File $file is not a regular file. Skipping."
     fi
   done
+  fi
 }
 
 sudoers()
