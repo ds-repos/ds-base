@@ -51,13 +51,13 @@ packages()
 jail()
 {
   # Check if jail exists
-  poudriere -e ../config jail -l | grep -q ${PRODUCT}
+  poudriere -e ../conf jail -l | grep -q ${PRODUCT}
   if [ $? -eq 1 ] ; then
     # If jail does not exist create it
-    poudriere -e ../config jail -c -j ${PRODUCT} -v ${OSVERSION}-RELEASE -K GENERIC
+    poudriere -e ../conf jail -c -j ${PRODUCT} -v ${OSVERSION}-RELEASE -K GENERIC
   else
     # Update jail if it exists
-    poudriere -e ../config jail -u -j ${PRODUCT}
+    poudriere -e ../conf jail -u -j ${PRODUCT}
   fi
 }
 

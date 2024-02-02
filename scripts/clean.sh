@@ -27,10 +27,10 @@ device()
 jail()
 {
   # Check if jail exists
-  poudriere -e ../config jail -l | grep -q ${PRODUCT}
+  poudriere -e ../conf jail -l | grep -q ${PRODUCT}
   if [ $? -eq 0 ] ; then
     # If jail exists remove it
-    yes | poudriere -e ../config  jail -d -j ${PRODUCT}
+    yes | poudriere -e ../conf  jail -d -j ${PRODUCT}
   fi
 }
 
