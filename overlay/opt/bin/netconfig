@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Check if the script is run as root
+if [ "$(id -u)" -ne 0 ]; then
+    echo "This script must be run as root."
+    exit 1
+fi
+
+if [ -d "/tmp/bsdinstall_etc" ] ; then
+  rm -rf /tmp/bsdinstall_etc
+fi
+
+BSDINSTALL_CONFIGCURRENT=yes
+bsdinstall netconfig
+
+if [ -f "/tmp/bsdinstall_etc/wpa_supplicant.conf" ] ; then
+  cp /tmp/bsdinstall_etc/wpa_supplicant.conf /etc/wpa_supplicant.conf
+fi
+
+if [ -f "/tmp/bsdinstall_etc/rc.conf.net" ] ; then
+  cat /tmp/bsdinstall_etc/rc.conf.net | xargs sysrc
+fi
