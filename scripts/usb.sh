@@ -138,7 +138,12 @@ cd bsdstep-main
 make install
 
 # Clean up the GNUstep sources after install
-make clean
+cd /
+rm -rf /bsdstep-main
+rm /bsdstep.zip
+
+# Send rc standard output to dev null
+sed -i '' 's/run_rc_script ${_rc_elem} ${_boot}/run_rc_script ${_rc_elem} ${_boot} > \/dev\/null/g' /etc/rc
 
 # Exit the chroot environment
 exit
