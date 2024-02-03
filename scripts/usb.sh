@@ -106,11 +106,10 @@ image()
   chroot /mnt /bin/sh <<EOF
 
 # Configure loader.conf for USB
-echo 'kern.geom.label.disk_ident.enable="0"' | tee -a /boot/loader.conf.local
-echo 'kern.geom.label.gptid.enable="0"' | tee -a /boot/loader.conf.local
-echo 'cryptodev_load="YES"' | tee -a /boot/loader.conf.local
-echo 'zfs_load="YES"' | tee -a /boot/loader.conf.local
-echo 'autoboot_delay="-1"' | tee -a /boot/loader.conf.local
+echo 'kern.geom.label.disk_ident.enable="0"' | tee -a /boot/loader.conf
+echo 'kern.geom.label.gptid.enable="0"' | tee -a /boot/loader.conf
+echo 'cryptodev_load="YES"' | tee -a /boot/loader.conf
+echo 'zfs_load="YES"' | tee -a /boot/loader.conf
 
 # Configure rc.conf for USB
 sysrc hostname="bsdstep"
