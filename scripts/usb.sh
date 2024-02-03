@@ -101,7 +101,7 @@ image()
   chroot /mnt pw useradd hexley -u 1000 \
   -c "Hexley" -d "/Users/hexley" \
   -g wheel -m -s /usr/local/bin/zsh -k /usr/share/skel -w none
-  chroot /mnt chown -R hexley /home/hexley
+  chroot /mnt chown -R hexley /Users/hexley
 
   chroot /mnt /bin/sh <<EOF
 
