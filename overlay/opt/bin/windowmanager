@@ -1,3 +1,3 @@
 #!/bin/sh
 
-wmaker --no-dock --no-clip --no-autolaunch --no-drawer --dont-restore --replace &
+wmaker --dont-restore --no-autolaunch --no-clip --no-dock --no-drawer --replace --static &
