@@ -7,10 +7,14 @@ fi
 BSDINSTALL_CONFIGCURRENT=yes
 sudo -E bsdinstall netconfig
 
-if [ -f "/tmp/bsdinstall_etc/wpa_supplicant.conf" ] ; then
-  cp /tmp/bsdinstall_etc/wpa_supplicant.conf /etc/wpa_supplicant.conf
+if [ -f "/tmp/bsdinstall_etc/rc.conf.net" ] ; then
+  cat /tmp/bsdinstall_etc/rc.conf.net | xargs sudo -E sysrc
 fi
 
-if [ -f "/tmp/bsdinstall_etc/rc.conf.net" ] ; then
-  cat /tmp/bsdinstall_etc/rc.conf.net | xargs sysrc
+if [ -f "/tmp/bsdinstall_etc/resolv.conf" ] ; then
+  sudo -E install -o root -g wheel -m 0644 /tmp/bsdinstall_etc/resolv.conf /etc/resolv.conf
+fi
+
+if [ -f "/tmp/bsdinstall_etc/wpa_supplicant.conf" ] ; then
+  sudo -E install -o root -g wheel -m 0644 /tmp/bsdinstall_etc/wpa_supplicant.conf /etc/wpa_supplicant
 fi
