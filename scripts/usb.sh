@@ -152,6 +152,7 @@ EOF
   rm -rf /mnt/usr/src
   rm /mnt/etc/resolv.conf
   zpool set bootfs=${PRODUCT}/ROOT/default ${PRODUCT}
+  zpool set autoexpand=on ${PRODUCT}
   zpool export ${PRODUCT}
   mdconfig -d -u 0
 }
