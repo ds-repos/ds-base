@@ -106,6 +106,7 @@ image()
   chroot /mnt /bin/sh <<EOF
 
 # Configure loader.conf for USB
+echo 'kern.cam.boot_delay="10000"' | tee -a /boot/loader.conf
 echo 'kern.geom.label.disk_ident.enable="0"' | tee -a /boot/loader.conf
 echo 'kern.geom.label.gptid.enable="0"' | tee -a /boot/loader.conf
 echo 'cryptodev_load="YES"' | tee -a /boot/loader.conf
