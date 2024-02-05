@@ -64,6 +64,9 @@ jail()
 image()
 {
   # Build image
+  #poudriere -e ../config image -t usb -s 6g -j ${PRODUCT} -c /${ZPOOL}/zedfiler/image-overlay  -A ./image-post-script.sh -n bsdstep -h bsdstep
+  poudriere -e ../config image -t usb -s 6g -j ${PRODUCT} -n bsdstep -h bsdstep
+  exit 0
   if [ -d "/mnt/var/cache/pkg" ] ; then umount /mnt/var/cache/pkg ; fi
   umount -f /mnt/dev >/dev/null 2>/dev/null || true
   umount -f /dev/md0p1 >/dev/null 2>/dev/null || true
