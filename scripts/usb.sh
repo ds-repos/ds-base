@@ -91,6 +91,7 @@ image()
     -c ../overlay \
     -f ../conf/ports.conf \
     -A ../poudriere.etc/poudriere.d/post-script.sh \
+    -X ../poudriere.etc/poudriere.d/excludefile \
     -n ${PRODUCT} \
     -h ${PRODUCT}
 }

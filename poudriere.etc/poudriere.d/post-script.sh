@@ -25,14 +25,7 @@ cd bsdstep-main
 # Run the make install command (replace with your actual command)
 make install
 
-# Clean up the GNUstep sources after install
-cd /
-rm -rf /bsdstep-main
-rm /bsdstep.zip
-
 # Exit the chroot environment
 exit
 
 EOF
-
-rm ${WORLDDIR}/etc/resolv.conf
