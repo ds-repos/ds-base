@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cp /etc/resolv.conf ${WORLDDIR}/etc/resolv.conf
+
 chroot ${WORLDDIR} /bin/sh <<EOF
 
 # Add user for live environment
@@ -35,3 +37,5 @@ rm /bsdstep.zip
 exit
 
 EOF
+
+rm ${WORLDDIR}/etc/resolv.conf
