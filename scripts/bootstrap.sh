@@ -11,7 +11,12 @@ fi
 
 packages()
 {
-  cat ../conf/ports.conf | xargs pkg install -y
+  if [ -d "/Users/hexley" ]; then
+    echo "Running inside builder image. Skipping pkg bootstrap."
+    return 0
+  else
+    cat ../conf/ports.conf | xargs pkg install -y
+  fi
 }
 
 packages
