@@ -55,7 +55,7 @@ ports()
   poudriere -e ../poudriere.etc ports -l | grep -q ${PRODUCT}
   if [ $? -eq 1 ] ; then
     # If ports does not exist create it
-    poudriere -e ../poudriere.etc ports -c -p ${PRODUCT}
+    poudriere -e ../poudriere.etc ports -c -p ${PRODUCT} -B 2024Q1
   else
     # Update ports if it exists
     poudriere -e ../poudriere.etc ports -u -p ${PRODUCT}
