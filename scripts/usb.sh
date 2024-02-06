@@ -73,7 +73,7 @@ jail()
   poudriere -e ../poudriere.etc jail -l | grep -q ${PRODUCT}
   if [ $? -eq 1 ] ; then
     # If jail does not exist create it
-    poudriere -e ../poudriere.etc jail -c -j ${PRODUCT} -v ${OSVERSION}-RELEASE -K GENERIC
+    poudriere -e ../poudriere.etc jail -c -j ${PRODUCT} -v ${VERSION} -K ${KERNEL}
   else
     # Update jail if it exists
     poudriere -e ../poudriere.etc jail -u -j ${PRODUCT}
