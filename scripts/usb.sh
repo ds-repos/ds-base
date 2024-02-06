@@ -97,4 +97,6 @@ image()
 datasets
 packages
 jail
+ports
+bulk
 image
