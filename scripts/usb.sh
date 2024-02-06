@@ -69,7 +69,7 @@ image()
     -s 6g \
     -j ${PRODUCT} \
     -c ../overlay \
-    -A ./image-post-script.sh \
+    -A ./poudriere.etc/poudriere.d/image-post-script.sh \
     -n bsdstep \
     -h bsdstep
 }
