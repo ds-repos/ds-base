@@ -87,6 +87,7 @@ image()
     -t usb \
     -s 6g \
     -j ${PRODUCT} \
+    -p ${PRODUCT} \
     -c ../overlay \
     -f ../conf/ports.conf
     -A ../poudriere.etc/poudriere.d/post-script.sh \
