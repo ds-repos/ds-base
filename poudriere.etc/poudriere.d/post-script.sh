@@ -19,11 +19,8 @@ fetch https://codeload.github.com/pkgdemon/bsdstep/zip/refs/heads/main -o bsdste
 # Unzip the archive
 unzip bsdstep.zip
 
-# Change directory to the specified target directory
-cd bsdstep-main
-
-# Run the make install command (replace with your actual command)
-make install
+# Change directory to the specified target directory and build
+cd bsdstep-main && make install
 
 # Exit the chroot environment
 exit
