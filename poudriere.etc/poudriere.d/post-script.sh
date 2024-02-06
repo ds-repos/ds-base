@@ -13,9 +13,6 @@ pw useradd hexley -u 1000 \
   -g wheel -m -s /usr/local/bin/zsh -k /usr/share/skel -w none
 chown -R hexley /Users/hexley
 
-# Configure rc.conf for USB
-sysrc growfs_enable="YES"
-
 # Fetch the bsdstep zip from GitHub
 fetch https://codeload.github.com/pkgdemon/bsdstep/zip/refs/heads/main -o bsdstep.zip
 
