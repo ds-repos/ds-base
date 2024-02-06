@@ -8,7 +8,7 @@ fi
 
 # Source config for environment variables
 . ../conf/build.conf
-. ../conf/poudriere.conf
+. ../poudriere.etc/poudriere.conf
 
 datasets()
 {
@@ -51,114 +51,27 @@ packages()
 jail()
 {
   # Check if jail exists
-  poudriere -e ../conf jail -l | grep -q ${PRODUCT}
+  poudriere -e ../poudriere.etc jail -l | grep -q ${PRODUCT}
   if [ $? -eq 1 ] ; then
     # If jail does not exist create it
-    poudriere -e ../conf jail -c -j ${PRODUCT} -v ${OSVERSION}-RELEASE -K GENERIC
+    poudriere -e ../poudriere.etc jail -c -j ${PRODUCT} -v ${OSVERSION}-RELEASE -K GENERIC
   else
     # Update jail if it exists
-    poudriere -e ../conf jail -u -j ${PRODUCT}
+    poudriere -e ../poudriere.etc jail -u -j ${PRODUCT}
   fi
 }
 
 image()
 {
   # Build image
-  #poudriere -e ../conf image -t usb -s 6g -j ${PRODUCT} -c /${ZPOOL}/zedfiler/image-overlay  -A ./image-post-script.sh -n bsdstep -h bsdstep
-  poudriere -e ../conf image -t usb -s 6g -j ${PRODUCT} -n bsdstep -h bsdstep
-  exit 0
-  if [ -d "/mnt/var/cache/pkg" ] ; then umount /mnt/var/cache/pkg ; fi
-  umount -f /mnt/dev >/dev/null 2>/dev/null || true
-  umount -f /dev/md0p1 >/dev/null 2>/dev/null || true
-
-  zpool destroy ${PRODUCT} >/dev/null 2>/dev/null || true
-  
-  if [ -c "/dev/md0" ] ; then mdconfig -d -u 0 ; fi
-  if [ -f "/${ZPOOL}/${PRODUCT}/${PRODUCT}.img" ] ; then rm /${ZPOOL}/${PRODUCT}/${PRODUCT}.img ; fi
-  
-  truncate -s 6g /${ZPOOL}/${PRODUCT}/${PRODUCT}.img
-  mdconfig -f /${ZPOOL}/${PRODUCT}/${PRODUCT}.img -u 0
-  
-  gpart create -s gpt md0
-  gpart add -t efi -s 40M md0
-  gpart add -t freebsd-zfs md0
-  newfs_msdos -F 32 -c 1 /dev/md0p1
-  mount -t msdosfs /dev/md0p1 /mnt
-  mkdir -p /mnt/EFI/BOOT
-  cp /${ZPOOL}/${PRODUCT}/poudriere/jails/${PRODUCT}/boot/loader.efi /mnt/EFI/BOOT/BOOTX64.efi
-  umount -f /dev/md0p1
-
-  zpool create -f -o cachefile=/tmp/zpool.cache -O mountpoint=none -O atime=off -O canmount=off -O compression=zstd-9 ${PRODUCT} /dev/md0p2
-  zfs create -o canmount=off ${PRODUCT}/ROOT
-  zfs create -o mountpoint=legacy ${PRODUCT}/ROOT/default
-  zfs send ${ZPOOL}/${PRODUCT}/poudriere/jails/${PRODUCT}@clean | zfs recv -F ${PRODUCT}/ROOT/default
-  mount -t zfs ${PRODUCT}/ROOT/default /mnt
-  cp /etc/resolv.conf /mnt/etc/resolv.conf
-  mkdir /mnt/var/cache/pkg
-  mount -t nullfs /${ZPOOL}/${PRODUCT}/cache/pkg /mnt/var/cache/pkg
-  mount -t devfs devfs /mnt/dev
-
-  chroot /mnt mkdir -p /Users/hexley/Desktop
-  chroot /mnt mkdir -p /Users/hexley/Documents
-  chroot /mnt mkdir -p /Users/hexley/Downloads
-  chroot /mnt pw useradd hexley -u 1000 \
-  -c "Hexley" -d "/Users/hexley" \
-  -g wheel -m -s /usr/local/bin/zsh -k /usr/share/skel -w none
-  chroot /mnt chown -R hexley /Users/hexley
-
-  chroot /mnt /bin/sh <<EOF
-
-# Configure loader.conf for USB
-echo 'kern.cam.boot_delay="10000"' | tee -a /boot/loader.conf
-echo 'kern.geom.label.disk_ident.enable="0"' | tee -a /boot/loader.conf
-echo 'kern.geom.label.gptid.enable="0"' | tee -a /boot/loader.conf
-echo 'cryptodev_load="YES"' | tee -a /boot/loader.conf
-echo 'zfs_load="YES"' | tee -a /boot/loader.conf
-
-# Configure rc.conf for USB
-sysrc hostname="bsdstep"
-sysrc ifconfig_DEFAULT="DHCP inet6 accept_rtadv"
-sysrc sshd_enable="YES"
-sysrc ntpd_enable="YES"
-sysrc ntpd_sync_on_start="YES"
-sysrc dumpdev="NO"
-sysrc zfs_enable="YES"
-sysrc growfs_enable="YES"
-
-# Create fstab
-touch /etc/fstab
-
-# Fetch the bsdstep zip from GitHub
-fetch https://codeload.github.com/pkgdemon/bsdstep/zip/refs/heads/main -o bsdstep.zip
-
-# Unzip the archive
-unzip bsdstep.zip
-
-# Change directory to the specified target directory
-cd bsdstep-main
-
-# Run the make install command (replace with your actual command)
-make install
-
-# Clean up the GNUstep sources after install
-cd /
-rm -rf /bsdstep-main
-rm /bsdstep.zip
-
-# Exit the chroot environment
-exit
-
-EOF
-  
-  umount /mnt/dev
-  umount /mnt/var/cache/pkg
-  rmdir /mnt/var/cache/pkg
-  rm -rf /mnt/usr/src
-  rm /mnt/etc/resolv.conf
-  zpool set bootfs=${PRODUCT}/ROOT/default ${PRODUCT}
-  zpool set autoexpand=on ${PRODUCT}
-  zpool export ${PRODUCT}
-  mdconfig -d -u 0
+  poudriere -e ../poudriere.etc image \
+    -t usb \
+    -s 6g \
+    -j ${PRODUCT} \
+    -c ../overlay \
+    -A ./image-post-script.sh \
+    -n bsdstep \
+    -h bsdstep
 }
 
 datasets

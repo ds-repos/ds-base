@@ -8,7 +8,7 @@ fi
 
 # Source config for environment variables
 . ../conf/build.conf
-. ../conf/poudriere.conf
+. ../poudriere.etc/poudriere.conf
 
 remove_sources()
 {
@@ -31,10 +31,10 @@ jail()
     return 0
   else
     # Check if jail exists
-    poudriere -e ../conf jail -l | grep -q ${PRODUCT}
+    poudriere -e ../poudriere.etc jail -l | grep -q ${PRODUCT}
     if [ $? -eq 0 ] ; then
       # If jail exists remove it
-      yes | poudriere -e ../conf  jail -d -j ${PRODUCT}
+      yes | poudriere -e ../poudriere.etc  jail -d -j ${PRODUCT}
     fi
   fi
 }
