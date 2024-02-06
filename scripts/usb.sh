@@ -91,8 +91,8 @@ image()
     -c ../overlay \
     -f ../conf/ports.conf \
     -A ../poudriere.etc/poudriere.d/post-script.sh \
-    -n bsdstep \
-    -h bsdstep
+    -n ${PRODUCT} \
+    -h ${PRODUCT}
 }
 
 datasets
