@@ -89,7 +89,7 @@ image()
     -j ${PRODUCT} \
     -p ${PRODUCT} \
     -c ../overlay \
-    -f ../conf/ports.conf
+    -f ../conf/ports.conf \
     -A ../poudriere.etc/poudriere.d/post-script.sh \
     -n bsdstep \
     -h bsdstep
