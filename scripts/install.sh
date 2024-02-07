@@ -183,66 +183,6 @@ sudoers()
   cd ${CWD} && install -m 0440 ../sudoers.d/wheel /usr/local/etc/sudoers.d/wheel
 }
 
-groups()
-{
-  # Iterate over all users with UID between 1000 and 2000
-  getent passwd | while IFS=: read -r username _ uid _; do
-      if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
-          # Add the user to the specified groups
-          pw groupmod video -m "$username"
-          pw groupmod webcamd -m "$username"
-          echo "User $username added to groups: video, webcamd"
-      fi
-  done
-}
-
-profile()
-{
-  if [ ! -d "/Users" ] ; then
-    ln -s /home Users
-  fi
-  # Iterate over all users with UID between 1000 and 2000
-  getent passwd | while IFS=: read -r username _ uid _; do
-      if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
-          # Install .xinitrc for the user
-          install -o 1000 -m 644 /usr/share/skel/dot.xinitrc /Users/"$username"/.xinitrc
-          # Install .zshrc for the user
-          install -o 1000 -m 644 /usr/share/skel/dot.zshrc /Users/"$username"/.zshrc
-          # Change users shell to zsh
-          chsh -s /usr/local/bin/zsh "$username"
-      fi
-  done 
-}
-
-defaults() {
-  cp -R ../overlay/ /
-
-  # Specify the path to the defaults.conf file
-  DEFAULTS_CONF="../conf/defaults.conf"
-
-  # Read the defaults.conf file line by line
-  while IFS= read -r line; do
-    # Ignore comments and empty lines
-    case "$line" in
-      ''|\#*) continue ;;
-    esac
-
-    # Execute the command using su for each user with UID between 1000 and 2000
-    getent passwd | while IFS=: read -r username _ uid _; do
-      # Skip system accounts, accounts with empty usernames, and users outside the specified UID range
-      case "$username" in
-        root|nologin|false|'') continue ;;
-      esac
-
-      if [ "$uid" -ge 1000 ] && [ "$uid" -le 2000 ]; then
-        # Execute the command using su
-        su "$username" -c "$line"
-      fi
-    done
-
-  done < "$DEFAULTS_CONF"
-}
-
 gnustep-make
 libobjc2
 gnustep
@@ -253,6 +193,3 @@ modules
 bonjour
 services
 sudoers
-groups
-profile
-defaults
