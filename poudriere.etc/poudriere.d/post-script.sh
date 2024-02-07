@@ -5,7 +5,7 @@ cp /etc/resolv.conf ${WORLDDIR}/etc/resolv.conf
 chroot ${WORLDDIR} /bin/sh <<EOF
 
 # Add user for live environment
-pw useradd -n hexley -c "Hexley" -m
+pw useradd -n hexley -c "Hexley" -m -w none
 
 exit 0
 
