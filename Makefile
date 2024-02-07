@@ -14,5 +14,5 @@ deinstall:
 clean:
 	cd scripts && ./clean.sh
 
-iso:
-	cd scripts && ./iso.sh
+image:
+	cd scripts && ./image.sh
