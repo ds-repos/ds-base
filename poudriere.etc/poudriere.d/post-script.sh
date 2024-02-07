@@ -5,12 +5,7 @@ cp /etc/resolv.conf ${WORLDDIR}/etc/resolv.conf
 chroot ${WORLDDIR} /bin/sh <<EOF
 
 # Add user for live environment
-mkdir -p /Users/hexley/Apps
-mkdir -p /Users/hexley/Desktop
-mkdir -p /Users/hexley/Documents
-mkdir -p /Users/hexley/Downloads
-pw useradd hexley -c "Hexley"
-chown -R hexley:staff /Users/
+pw useradd -n hexley -c "Hexley" -m
 
 exit 0
 
