@@ -17,7 +17,7 @@ mkdir -p /Users/hexley/Documents
 mkdir -p /Users/hexley/Downloads
 pw useradd hexley -u 1000 \
   -c "Hexley" -d "/Users/hexley" \
-  -g staff wheel -m -s /usr/local/bin/zsh -k /usr/share/skel -w none
+  -g staff -G wheel -m -s /usr/local/bin/zsh -k /usr/share/skel -w none
 chown -R hexley:staff /Users/hexley
 
 # Fetch the bsdstep zip from GitHub
