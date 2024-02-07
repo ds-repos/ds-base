@@ -7,8 +7,6 @@ chroot ${WORLDDIR} /bin/sh <<EOF
 # Add user for live environment
 pw useradd -n hexley -c "Hexley" -m -w none
 
-exit 0
-
 # Fetch the bsdstep zip from GitHub
 fetch https://codeload.github.com/pkgdemon/bsdstep/zip/refs/heads/main -o bsdstep.zip
 
