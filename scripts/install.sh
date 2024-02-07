@@ -23,7 +23,7 @@ gnustep-make() {
       --with-thread-lib=-pthread \
       --prefix="${install_prefix}" \
       --with-layout=gnustep \
-      --with-config-file=${GNUSTEP_PREFIX}/GNUstep.conf \
+      --with-config-file=${GNUSTEP_PREFIX}/etc/GNUstep.conf \
       --with-layout=gnustep \
       --enable-objc-nonfragile-abi \
       --enable-native-objc-exceptions \

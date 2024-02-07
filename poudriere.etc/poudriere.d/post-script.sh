@@ -14,6 +14,7 @@ sysrc growfs_enable="YES"
 touch /etc/fstab
 
 # Add user for live environment
+mkdir -p /Users/hexley/Apps
 mkdir -p /Users/hexley/Desktop
 mkdir -p /Users/hexley/Documents
 mkdir -p /Users/hexley/Downloads
