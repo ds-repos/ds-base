@@ -84,7 +84,7 @@ image()
 {
   # Build image
   poudriere -e ../poudriere.etc image \
-    -t usb \
+    -t zfs \
     -s 6g \
     -j ${PRODUCT} \
     -p ${PRODUCT} \
