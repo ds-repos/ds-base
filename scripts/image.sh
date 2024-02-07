@@ -84,7 +84,8 @@ image()
 {
   # Build image
   poudriere -e ../poudriere.etc image \
-    -t hybridiso \
+    -t zfs \
+    -s 6g
     -j ${PRODUCT} \
     -p ${PRODUCT} \
     -c ../overlay \
