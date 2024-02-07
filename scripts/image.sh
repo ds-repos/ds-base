@@ -85,7 +85,7 @@ image()
   # Build image
   poudriere -e ../poudriere.etc image \
     -t zfs \
-    -s 6g
+    -s 6g \
     -j ${PRODUCT} \
     -p ${PRODUCT} \
     -c ../overlay \
