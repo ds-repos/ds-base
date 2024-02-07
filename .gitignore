@@ -1,2 +1,2 @@
-config/poudriere.d/jails
-config/poudriere.d/ports
+poudriere.etc/poudriere.d/jails/
+poudriere.etc/poudriere.d/ports/
