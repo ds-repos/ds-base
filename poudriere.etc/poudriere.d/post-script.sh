@@ -10,7 +10,9 @@ mkdir -p /Users/hexley/Desktop
 mkdir -p /Users/hexley/Documents
 mkdir -p /Users/hexley/Downloads
 pw useradd hexley -c "Hexley"
-chown -R hexley:staff /Users/hexley
+chown -R hexley:staff /Users/
+
+exit 0
 
 # Fetch the bsdstep zip from GitHub
 fetch https://codeload.github.com/pkgdemon/bsdstep/zip/refs/heads/main -o bsdstep.zip
