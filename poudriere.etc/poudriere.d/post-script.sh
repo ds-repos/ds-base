@@ -16,6 +16,12 @@ unzip bsdstep.zip
 # Change directory to the specified target directory and build
 cd bsdstep-main && make install
 
+# Cleanup after build
+/bsdstep-main
+/bsdstep.zip
+/etc/resolv.conf
+/gnustep-src
+
 # Exit the chroot environment
 exit
 
