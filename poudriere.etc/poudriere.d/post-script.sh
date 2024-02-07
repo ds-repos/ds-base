@@ -4,12 +4,6 @@ cp /etc/resolv.conf ${WORLDDIR}/etc/resolv.conf
 
 chroot ${WORLDDIR} /bin/sh <<EOF
 
-# Configure loader.conf for USB
-echo 'kern.cam.boot_delay="10000"' | tee -a /boot/loader.conf
-
-# Create fstab
-touch /etc/fstab
-
 # Add user for live environment
 mkdir -p /Users/hexley/Apps
 mkdir -p /Users/hexley/Desktop
