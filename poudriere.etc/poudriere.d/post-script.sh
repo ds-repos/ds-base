@@ -4,14 +4,23 @@ cp /etc/resolv.conf ${WORLDDIR}/etc/resolv.conf
 
 chroot ${WORLDDIR} /bin/sh <<EOF
 
+# Configure loader.conf for USB
+echo 'kern.cam.boot_delay="10000"' | tee -a /boot/loader.conf
+
+# Configure rc.conf for USB
+sysrc growfs_enable="YES"
+
+# Create fstab
+touch /etc/fstab
+
 # Add user for live environment
 mkdir -p /Users/hexley/Desktop
 mkdir -p /Users/hexley/Documents
 mkdir -p /Users/hexley/Downloads
 pw useradd hexley -u 1000 \
   -c "Hexley" -d "/Users/hexley" \
-  -g wheel -m -s /usr/local/bin/zsh -k /usr/share/skel -w none
-chown -R hexley /Users/hexley
+  -g staff,wheel -m -s /usr/local/bin/zsh -k /usr/share/skel -w none
+chown -R hexley:staff /Users/hexley
 
 # Fetch the bsdstep zip from GitHub
 fetch https://codeload.github.com/pkgdemon/bsdstep/zip/refs/heads/main -o bsdstep.zip
