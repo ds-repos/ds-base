@@ -8,7 +8,8 @@ chroot ${WORLDDIR} /bin/sh <<EOF
 echo 'kern.cam.boot_delay="10000"' | tee -a /boot/loader.conf
 
 # Configure rc.conf for USB
-sysrc growfs_enable="YES"
+echo 'service growfs onestart' | tee -a /etc/rc.local
+echo 'rm /etc/rc.local' | tee -a /etc/rc.local
 
 # Create fstab
 touch /etc/fstab
