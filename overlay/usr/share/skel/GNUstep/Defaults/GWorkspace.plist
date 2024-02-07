@@ -60,7 +60,7 @@
 	<key>iconsize</key>
 	<integer>48</integer>
 	<key>imagepath</key>
-	<string>/System/Library/bard-orange.jpg</string>
+	<string>/System/Library/bard.jpeg</string>
 	<key>imagestyle</key>
 	<integer>1</integer>
 	<key>labeltxtsize</key>
