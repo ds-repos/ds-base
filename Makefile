@@ -14,5 +14,5 @@ deinstall:
 clean:
 	cd scripts && ./clean.sh
 
-usb:
-	cd scripts && ./usb.sh
+iso:
+	cd scripts && ./iso.sh
