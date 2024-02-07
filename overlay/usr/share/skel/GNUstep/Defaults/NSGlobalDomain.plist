@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>GSBackHandlesWindowDecoration</key>
+    <string>NO</string>
+    <key>GSFileBrowserHideDotFiles</key>
+    <string>YES</string>
+    <key>NSBoldFont</key>
+    <string>Luxi Sans</string>
+    <key>NSFont</key>
+    <string>Luxi Sans</string>
+    <key>NSFontSize</key>
+    <string>13</string>
+    <key>NSMenuInterfaceStyle</key>
+    <string>NSMacintoshInterfaceStyle</string>
+    <key>NSUserFont</key>
+    <string>Luxi Sans</string>
+</dict>
+</plist>
