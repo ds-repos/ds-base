@@ -11,7 +11,7 @@ fi
 
 packages()
 {
-  if [ -d "/Users/hexley" ]; then
+  if [ -f "/Users/hexley" ]; then
     echo "Running inside builder image. Skipping pkg bootstrap."
     return 0
   else
