@@ -151,7 +151,7 @@ bonjour() {
 }
 
 services() {
-  if [ -d "/Users/hexley" ]; then
+  if [ -f "/ds-build.zip" ]; then
     echo "Running inside builder image. Skipping service startup."
     return 0
   else

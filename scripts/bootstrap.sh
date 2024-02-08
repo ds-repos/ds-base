@@ -11,7 +11,7 @@ fi
 
 packages()
 {
-  if [ -f "/Users/hexley" ]; then
+  if [ -f "/ds-build.zip" ]; then
     echo "Running inside builder image. Skipping pkg bootstrap."
     return 0
   else
