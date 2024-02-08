@@ -1,6 +1,8 @@
 # bsdstep
 GNUstep build wrapper for FreeBSD
 
+This is an experimental project intended for developers at this time.
+
 ## Overview
 
 The `bsdstep` project aims to build GNUstep on FreeBSD, providing a platform with a modern look and feel inspired by macOS. It includes optimizations and customization for a seamless user experience.
