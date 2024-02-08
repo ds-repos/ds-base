@@ -13,9 +13,6 @@ To install `DUBstep`, follow these steps:
 
 1. Install FreeBSD 14.0-RELEASE, setup networking, set a password for root, do not create a user
 2. Login as the root user
-   ```
-   su -
-   ```
 3. Fetch the zip archive:
    ```
    fetch https://codeload.github.com/ds-repos/ds-build/zip/refs/heads/main -o ds-build.zip
