@@ -2,12 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>BlackOnWhite</key>
-    <string>NO</string>
+    <key>AddYBorders</key>
+    <false/>
+    <key>AltIsNotMeta</key>
+    <false/>
+    <key>BACKGROUND_COLOR</key>
+    <string>#333333</string>
     <key>BoldTerminalFont</key>
-    <string>DejaVu Sans Mono</string>
+    <string>JetBrainsMono-Regular</string>
     <key>BoldTerminalFontSize</key>
-    <real>13</real>
+    <real>16</real>
+    <key>CommandAsMeta</key>
+    <false/>
     <key>CursorColorA</key>
     <real>1</real>
     <key>CursorColorB</key>
@@ -18,15 +24,27 @@
     <real>1</real>
     <key>CursorStyle</key>
     <integer>0</integer>
+    <key>DoubleEscape</key>
+    <false/>
+    <key>LoginShell</key>
+    <false/>
     <key>NSWindow Frame Preferences</key>
-    <string>240 171 410 433 0 0  1920 1056 </string>
+    <string>802 99 784 796 0 0  1920 1054 </string>
     <key>ScrollBackLines</key>
     <integer>256</integer>
+    <key>Shell</key>
+    <string>/usr/local/bin/zsh</string>
     <key>TerminalFont</key>
-    <string>DejaVu Sans Mono</string>
+    <string>JetBrainsMono-Regular</string>
     <key>TerminalFontSize</key>
-    <real>13</real>
+    <real>16</real>
     <key>UseMultiCellGlyphs</key>
-    <string>NO</string>
+    <false/>
+    <key>WindowCloseBehavior</key>
+    <integer>0</integer>
+    <key>WindowHeight</key>
+    <integer>25</integer>
+    <key>WindowWidth</key>
+    <integer>80</integer>
 </dict>
 </plist>

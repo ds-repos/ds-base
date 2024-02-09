@@ -23,35 +23,43 @@
     </array>
     <key>GSWorkspaceApplication</key>
     <string>GWorkspace</string>
+    <key>NSDefaultOpenDirectory</key>
+    <string>/usr/local/share/wallpapers</string>
+    <key>NSWindow Frame fiend_window</key>
+    <string>561 999 64 64 0 0  1920 1054 </string>
+    <key>NSWindow Frame finder</key>
+    <string>25 410 486 286 0 0  1920 1054 </string>
+    <key>NSWindow Frame inspector</key>
+    <string>199 86 278 418 0 0  1920 1054 </string>
+    <key>NSWindow Frame preferencesWin</key>
+    <string>1105 180 398 327 0 0  1920 1054 </string>
+    <key>NSWindow Frame run_external</key>
+    <string>136 810 323 145 0 0  1920 1054 </string>
     <key>applications</key>
     <dict>
-	<key>1</key>
-	<string>TextEdit</string>
-	<key>2</key>
-	<string>Terminal</string>
     </dict>
     <key>auto_calculate_sizes</key>
-    <string>NO</string>
-    <key>browserColsWidth</key>
-    <string>200</string>
+    <false/>
     <key>default_sortorder</key>
     <integer>0</integer>
     <key>defaulteditor</key>
-    <string>nedit.app</string>
+    <string>Textedit.app</string>
+    <key>defaultxtermargs</key>
+    <string></string>
     <key>defxterm</key>
-    <string>xterm</string>
+    <string>alacritty</string>
     <key>desktopinfo</key>
     <dict>
 	<key>backcolor</key>
 	<dict>
 	    <key>alpha</key>
-	    <string>1</string>
+	    <real>1</real>
 	    <key>blue</key>
-	    <string>0.7</string>
+	    <real>0.57</real>
 	    <key>green</key>
-	    <string>0.5</string>
+	    <real>0.51</real>
 	    <key>red</key>
-	    <string>0.3</string>
+	    <real>0.39</real>
 	</dict>
 	<key>fsn_info_type</key>
 	<integer>0</integer>
@@ -60,25 +68,68 @@
 	<key>iconsize</key>
 	<integer>48</integer>
 	<key>imagepath</key>
-	<string>/System/Library/bard.jpeg</string>
+	<string>/home/damianos/Documents/Tutorials/GNUstep_howto/joe/backgrounds/PantherAquaWine.jpg</string>
 	<key>imagestyle</key>
-	<integer>1</integer>
+	<integer>0</integer>
+	<key>indexes</key>
+	<dict>
+	    <key>2024-02-06_2560x1440.png</key>
+	    <integer>15</integer>
+	    <key>Chromium.app</key>
+	    <integer>8</integer>
+	    <key>Firefox.app</key>
+	    <integer>9</integer>
+	    <key>NewFolder</key>
+	    <integer>0</integer>
+	    <key>NewFolder1</key>
+	    <integer>5</integer>
+	    <key>NewFolder2</key>
+	    <integer>2</integer>
+	    <key>NewFolder3</key>
+	    <integer>11</integer>
+	    <key>SF-Pro</key>
+	    <integer>7</integer>
+	    <key>Terminal.plist</key>
+	    <integer>14</integer>
+	    <key>Terminal.plist.OLD</key>
+	    <integer>13</integer>
+	    <key>debug.json</key>
+	    <integer>3</integer>
+	    <key>dot.zshrc</key>
+	    <integer>16</integer>
+	    <key>gtk2-debug.txt</key>
+	    <integer>10</integer>
+	    <key>plugin-patches.png</key>
+	    <integer>12</integer>
+	    <key>scripts</key>
+	    <integer>1</integer>
+	    <key>wayfire-plugins-gnustep</key>
+	    <integer>6</integer>
+	    <key>waystep.png</key>
+	    <integer>4</integer>
+	</dict>
 	<key>labeltxtsize</key>
 	<integer>12</integer>
 	<key>usebackimage</key>
 	<true/>
     </dict>
-    <key>dockclickpolicy</key>
-    <integer>1</integer>
     <key>dockposition</key>
     <integer>0</integer>
     <key>dockstyle</key>
-    <integer>1</integer>
+    <integer>0</integer>
+    <key>fiendcurrentlayer</key>
+    <string>Workspace</string>
+    <key>fiendlayers</key>
+    <dict>
+	<key>Workspace</key>
+	<dict>
+	</dict>
+    </dict>
     <key>hiddendirs</key>
     <array>
     </array>
     <key>hidedock</key>
-    <string>NO</string>
+    <true/>
     <key>history_cache</key>
     <integer>20</integer>
     <key>last_active_inspector</key>
@@ -86,36 +137,237 @@
     <key>last_used_modules</key>
     <dict>
 	<key>Name</key>
-	<integer>1</integer>
+	<integer>0</integer>
     </dict>
     <key>lsfolders_paths</key>
     <array>
     </array>
     <key>no_desktop</key>
-    <string>NO</string>
+    <false/>
+    <key>root_viewer</key>
+    <dict>
+	<key>fsn_info_type</key>
+	<integer>0</integer>
+	<key>geometry</key>
+	<string>738 246 964 679 0 0  1920 1054 </string>
+	<key>hligh_table_col</key>
+	<integer>0</integer>
+	<key>iconposition</key>
+	<integer>5</integer>
+	<key>iconsize</key>
+	<integer>48</integer>
+	<key>labeltxtsize</key>
+	<integer>12</integer>
+	<key>lastselection</key>
+	<array>
+	    <string>/usr/local/GNUstep/Local/Applications</string>
+	</array>
+	<key>list_view_columns</key>
+	<dict>
+	    <key>0</key>
+	    <dict>
+		<key>identifier</key>
+		<integer>0</integer>
+		<key>minwidth</key>
+		<real>80</real>
+		<key>position</key>
+		<integer>0</integer>
+		<key>width</key>
+		<real>140</real>
+	    </dict>
+	    <key>1</key>
+	    <dict>
+		<key>identifier</key>
+		<integer>1</integer>
+		<key>minwidth</key>
+		<real>80</real>
+		<key>position</key>
+		<integer>3</integer>
+		<key>width</key>
+		<real>646</real>
+	    </dict>
+	    <key>2</key>
+	    <dict>
+		<key>identifier</key>
+		<integer>2</integer>
+		<key>minwidth</key>
+		<real>80</real>
+		<key>position</key>
+		<integer>1</integer>
+		<key>width</key>
+		<real>90</real>
+	    </dict>
+	    <key>3</key>
+	    <dict>
+		<key>identifier</key>
+		<integer>3</integer>
+		<key>minwidth</key>
+		<real>50</real>
+		<key>position</key>
+		<integer>2</integer>
+		<key>width</key>
+		<real>50</real>
+	    </dict>
+	</dict>
+	<key>shelfdicts</key>
+	<array>
+	    <dict>
+		<key>index</key>
+		<integer>0</integer>
+		<key>paths</key>
+		<array>
+		    <string>/home/damianos</string>
+		</array>
+	    </dict>
+	</array>
+	<key>shelfheight</key>
+	<real>150</real>
+	<key>singlenode</key>
+	<true/>
+	<key>viewtype</key>
+	<string>List</string>
+    </dict>
     <key>saved_places</key>
     <array>
     </array>
     <key>search_res_h</key>
     <integer>0</integer>
+    <key>singleclicklaunch</key>
+    <true/>
+    <key>tabshelf</key>
+    <dict>
+	<key>auto_hide</key>
+	<false/>
+	<key>tabs</key>
+	<array>
+	    <dict>
+		<key>Tab1</key>
+		<dict>
+		    <key>icons</key>
+		    <array>
+		    </array>
+		    <key>iconstype</key>
+		    <integer>0</integer>
+		</dict>
+	    </dict>
+	    <dict>
+		<key>Pasteboard</key>
+		<dict>
+		    <key>icons</key>
+		    <array>
+		    </array>
+		    <key>iconstype</key>
+		    <integer>1</integer>
+		</dict>
+	    </dict>
+	    <dict>
+		<key>last</key>
+		<dict>
+		    <key>icons</key>
+		    <array>
+		    </array>
+		    <key>iconstype</key>
+		    <integer>0</integer>
+		</dict>
+	    </dict>
+	</array>
+    </dict>
     <key>terminal_services</key>
-    <string>YES</string>
+    <true/>
     <key>tshelf</key>
-    <string>NO</string>
+    <false/>
     <key>tshelfpbfnum</key>
     <string>0</string>
     <key>use_thumbnails</key>
-    <string>YES</string>
+    <false/>
     <key>usefiend</key>
-    <string>NO</string>
+    <false/>
     <key>uses_inspector</key>
-    <string>NO</string>
+    <false/>
     <key>uses_recycler</key>
-    <string>NO</string>
+    <false/>
     <key>uses_search_places</key>
-    <string>NO</string>
-    <key>usesthumbnails</key>
-    <string>YES</string>
+    <false/>
+    <key>viewer_at_/</key>
+    <dict>
+	<key>fsn_info_type</key>
+	<integer>0</integer>
+	<key>hligh_table_col</key>
+	<integer>0</integer>
+	<key>iconposition</key>
+	<integer>5</integer>
+	<key>iconsize</key>
+	<integer>48</integer>
+	<key>labeltxtsize</key>
+	<integer>12</integer>
+	<key>list_view_columns</key>
+	<dict>
+	    <key>0</key>
+	    <dict>
+		<key>identifier</key>
+		<integer>0</integer>
+		<key>minwidth</key>
+		<real>80</real>
+		<key>position</key>
+		<integer>0</integer>
+		<key>width</key>
+		<real>140</real>
+	    </dict>
+	    <key>1</key>
+	    <dict>
+		<key>identifier</key>
+		<integer>1</integer>
+		<key>minwidth</key>
+		<real>80</real>
+		<key>position</key>
+		<integer>3</integer>
+		<key>width</key>
+		<real>634</real>
+	    </dict>
+	    <key>2</key>
+	    <dict>
+		<key>identifier</key>
+		<integer>2</integer>
+		<key>minwidth</key>
+		<real>80</real>
+		<key>position</key>
+		<integer>1</integer>
+		<key>width</key>
+		<real>90</real>
+	    </dict>
+	    <key>3</key>
+	    <dict>
+		<key>identifier</key>
+		<integer>3</integer>
+		<key>minwidth</key>
+		<real>50</real>
+		<key>position</key>
+		<integer>2</integer>
+		<key>width</key>
+		<real>50</real>
+	    </dict>
+	</dict>
+    </dict>
+    <key>viewer_at_/usr/local/GNUstep/System/Applications</key>
+    <dict>
+	<key>fsn_info_type</key>
+	<integer>0</integer>
+	<key>geometry</key>
+	<string>132 235 1050 756 0 0  1920 1054 </string>
+	<key>lastselection</key>
+	<array>
+	    <string>/usr/local/GNUstep/System/Applications/Terminal.app</string>
+	</array>
+	<key>shelfdicts</key>
+	<array>
+	</array>
+	<key>shelfheight</key>
+	<real>77</real>
+	<key>singlenode</key>
+	<false/>
+	<key>viewtype</key>
+	<string>Browser</string>
+    </dict>
     <key>viewersinfo</key>
     <array>
 	<dict>
@@ -126,6 +378,6 @@
 	</dict>
     </array>
     <key>xbundle</key>
-    <string>NO</string>
+    <false/>
 </dict>
 </plist>
