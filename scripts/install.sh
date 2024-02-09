@@ -188,8 +188,10 @@ fonts()
   sysfont_repo=San-Francisco-Pro-Fonts
   # termfont_repo=JetBrainsMono
   # git clone https://github.com/sahibjotsaggu/$sysfont_repo.git
-  mkdir -p /System/Library/Fonts
-  mv ${SRC}/sfpro/$sysfont_repo/*.otf /System/Library/Fonts
+  if [ ! -d "/System/Library/Fonts" ] ; then
+    mkdir /System/Library/Fonts
+  fi
+  cp -R ${SRC}/sysfont_repo/*.otf /System/Library/Fonts
 }
 
 gnustep-make
@@ -202,3 +204,4 @@ modules
 bonjour
 services
 sudoers
+fonts
