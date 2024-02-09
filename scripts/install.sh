@@ -188,6 +188,7 @@ fonts()
   sysfont_repo=San-Francisco-Pro-Fonts
   # termfont_repo=JetBrainsMono
   # git clone https://github.com/sahibjotsaggu/$sysfont_repo.git
+  mkdir -p /System/Library/Fonts
   mv ${SRC}/sfpro/$sysfont_repo/*.otf /System/Library/Fonts
 }
 
