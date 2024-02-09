@@ -1,0 +1,56 @@
+#!/bin/sh
+
+# TERMINAL.APP
+defaults write Terminal BoldTerminalFont JetBrainsMono-Regular
+defaults write Terminal BoldTerminalFontSize 16
+defaults write Terminal TerminalFont JetBrainsMono-Regular
+defaults write Terminal TerminalFontSize 16
+
+# WINDOW MANAGEMENT
+defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
+defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
+
+# GLOBAL SETTINGS
+defaults write GSSuppressAppIcon 1
+defaults write GSTheme Sombre
+defaults write NSBackUsesNativeTaskbar 1
+defaults write NSInterfaceStyleDefault NSMacintoshInterfaceStyle
+defaults write UseWindowMakerIcons 0
+
+# GLOBAL FONT SETTINGS
+defaults write NSBoldFont SFPRODisplay-Bold 
+defaults write NSBoldFontSize 12.0
+##
+defaults write NSControlContentFont SFPRODisplay-Regular 
+defaults write NSControlContentFontSize 12.0
+##
+defaults write NSFont SFPRO_510wght
+defaults write NSFontSize 12.0
+##
+defaults write NSLabelFont SFPRO_590wght
+defaults write NSLabelFontSize 12.0
+##
+defaults write NSMenuFont SFPRO_590wght
+defaults write NSMenuFontSize 14.0
+##
+defaults write NSMessageFont SFPRODisplay-Regular 
+defaults write NSMessageFontSize 12.0
+##
+defaults write NSPaletteFont SFPRODisplay-Regular 
+defaults write NSPaletteFontSize 12.0
+##
+defaults write NSTitleBarFont SFPRODisplay-Bold 
+defaults write NSTitleBarFontSize 12.0
+##
+defaults write NSToolTipsFont SFPRODisplay-Regular 
+defaults write NSToolTipsFontSize 12.0
+##
+defaults write NSUserFixedPitchFont JetBrainsMono-Regular 
+defaults write NSUserFixedPitchFontSize 12.0
+##
+defaults write NSUserFont SFProDisplay-Regular 
+defaults write NSUserFontSize 12.0
+
+# GWorkspace
+defaults write GWorkspace imagepath /System/Library/Desktop\ Pictures/
+defaults write GWorkspace usebackimage 1

@@ -183,6 +183,14 @@ sudoers()
   cd ${CWD} && install -m 0440 ../sudoers.d/wheel /usr/local/etc/sudoers.d/wheel
 }
 
+fonts()
+{
+  sysfont_repo=San-Francisco-Pro-Fonts
+  # termfont_repo=JetBrainsMono
+  # git clone https://github.com/sahibjotsaggu/$sysfont_repo.git
+  mv ${SRC}/sfpro/$sysfont_repo/*.otf /System/Library/Fonts
+}
+
 gnustep-make
 libobjc2
 gnustep
