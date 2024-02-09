@@ -183,6 +183,15 @@ sudoers()
   cd ${CWD} && install -m 0440 ../sudoers.d/wheel /usr/local/etc/sudoers.d/wheel
 }
 
+fonts()
+{
+  sysfont_repo=San-Francisco-Pro-Fonts 
+  if [ ! -d "/System/Library/Fonts" ] ; then
+    mkdir /System/Library/Fonts
+  fi
+  cp -R ${SRC}/$sysfont_repo/*.otf /System/Library/Fonts
+}
+
 gnustep-make
 libobjc2
 gnustep
@@ -193,3 +202,4 @@ modules
 bonjour
 services
 sudoers
+fonts

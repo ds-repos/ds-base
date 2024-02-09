@@ -1,3 +1,6 @@
+# Removing the following line will break Ctrl-A and Ctrl-E
+bindkey -e
+
 PROMPT='%n@%m %1~ %# '
 autoload -U colors
 colors

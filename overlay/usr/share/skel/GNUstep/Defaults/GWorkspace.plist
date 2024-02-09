@@ -60,9 +60,9 @@
 	<key>iconsize</key>
 	<integer>48</integer>
 	<key>imagepath</key>
-	<string>/System/Library/bard.jpeg</string>
+        <string>/System/Library/Desktop Pictures/PantherAquaWine.jpg</string>
 	<key>imagestyle</key>
-	<integer>1</integer>
+	<integer>0</integer>
 	<key>labeltxtsize</key>
 	<integer>12</integer>
 	<key>usebackimage</key>
@@ -73,12 +73,12 @@
     <key>dockposition</key>
     <integer>0</integer>
     <key>dockstyle</key>
-    <integer>1</integer>
+    <integer>0</integer>
     <key>hiddendirs</key>
     <array>
     </array>
     <key>hidedock</key>
-    <string>NO</string>
+    <false/>
     <key>history_cache</key>
     <integer>20</integer>
     <key>last_active_inspector</key>
