@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>BlackOnWhite</key>
+    <string>NO</string>
+    <key>BoldTerminalFont</key>
+    <string>DejaVu Sans Mono</string>
+    <key>BoldTerminalFontSize</key>
+    <real>13</real>
+    <key>CursorColorA</key>
+    <real>1</real>
+    <key>CursorColorB</key>
+    <real>1</real>
+    <key>CursorColorG</key>
+    <real>1</real>
+    <key>CursorColorR</key>
+    <real>1</real>
+    <key>CursorStyle</key>
+    <integer>0</integer>
+    <key>NSWindow Frame Preferences</key>
+    <string>240 171 410 433 0 0  1920 1056 </string>
+    <key>ScrollBackLines</key>
+    <integer>256</integer>
+    <key>TerminalFont</key>
+    <string>DejaVu Sans Mono</string>
+    <key>TerminalFontSize</key>
+    <real>13</real>
+    <key>UseMultiCellGlyphs</key>
+    <string>NO</string>
+</dict>
+</plist>
