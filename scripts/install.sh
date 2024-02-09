@@ -185,13 +185,11 @@ sudoers()
 
 fonts()
 {
-  sysfont_repo=San-Francisco-Pro-Fonts
-  # termfont_repo=JetBrainsMono
-  # git clone https://github.com/sahibjotsaggu/$sysfont_repo.git
+  sysfont_repo=San-Francisco-Pro-Fonts 
   if [ ! -d "/System/Library/Fonts" ] ; then
     mkdir /System/Library/Fonts
   fi
-  cp -R ${SRC}/sysfont_repo/*.otf /System/Library/Fonts
+  cp -R ${SRC}/$sysfont_repo/*.otf /System/Library/Fonts
 }
 
 gnustep-make
