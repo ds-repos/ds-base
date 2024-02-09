@@ -78,7 +78,7 @@
     <array>
     </array>
     <key>hidedock</key>
-    <true/>
+    <false/>
     <key>history_cache</key>
     <integer>20</integer>
     <key>last_active_inspector</key>
