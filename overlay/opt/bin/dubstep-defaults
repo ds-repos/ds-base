@@ -11,45 +11,45 @@ defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
 defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
 
 # GLOBAL SETTINGS
-defaults write GSSuppressAppIcon 1
-defaults write GSTheme Sombre
-defaults write NSBackUsesNativeTaskbar 1
-defaults write NSInterfaceStyleDefault NSMacintoshInterfaceStyle
-defaults write UseWindowMakerIcons 0
+defaults write NSGlobalDomain GSSuppressAppIcon 1
+defaults write NSGlobalDomain GSTheme Sombre
+defaults write NSGlobalDomain NSBackUsesNativeTaskbar 1
+defaults write NSGlobalDomain NSInterfaceStyleDefault NSMacintoshInterfaceStyle
+defaults write NSGlobalDomain UseWindowMakerIcons 0
 
 # GLOBAL FONT SETTINGS
-defaults write NSBoldFont SFPRODisplay-Bold 
-defaults write NSBoldFontSize 12.0
+defaults write NSGlobalDomain NSBoldFont SFPRODisplay-Bold 
+defaults write NSGlobalDomain NSBoldFontSize 12.0
 ##
-defaults write NSControlContentFont SFPRODisplay-Regular 
-defaults write NSControlContentFontSize 12.0
+defaults write NSGlobalDomain NSControlContentFont SFPRODisplay-Regular 
+defaults write NSGlobalDomain NSControlContentFontSize 12.0
 ##
-defaults write NSFont SFPRO_510wght
-defaults write NSFontSize 12.0
+defaults write NSGlobalDomain NSFont SFPRO_510wght
+defaults write NSGlobalDomain NSFontSize 12.0
 ##
-defaults write NSLabelFont SFPRO_590wght
-defaults write NSLabelFontSize 12.0
+defaults write NSGlobalDomain NSLabelFont SFPRO_590wght
+defaults write NSGlobalDomain NSLabelFontSize 12.0
 ##
-defaults write NSMenuFont SFPRO_590wght
-defaults write NSMenuFontSize 14.0
+defaults write NSGlobalDomain NSMenuFont SFPRO_590wght
+defaults write NSGlobalDomain NSMenuFontSize 14.0
 ##
-defaults write NSMessageFont SFPRODisplay-Regular 
-defaults write NSMessageFontSize 12.0
+defaults write NSGlobalDomain NSMessageFont SFPRODisplay-Regular 
+defaults write NSGlobalDomain NSMessageFontSize 12.0
 ##
-defaults write NSPaletteFont SFPRODisplay-Regular 
-defaults write NSPaletteFontSize 12.0
+defaults write NSGlobalDomain NSPaletteFont SFPRODisplay-Regular 
+defaults write NSGlobalDomain NSPaletteFontSize 12.0
 ##
-defaults write NSTitleBarFont SFPRODisplay-Bold 
-defaults write NSTitleBarFontSize 12.0
+defaults write NSGlobalDomain NSTitleBarFont SFPRODisplay-Bold 
+defaults write NSGlobalDomain NSTitleBarFontSize 12.0
 ##
-defaults write NSToolTipsFont SFPRODisplay-Regular 
-defaults write NSToolTipsFontSize 12.0
+defaults write NSGlobalDomain NSToolTipsFont SFPRODisplay-Regular 
+defaults write NSGlobalDomain NSToolTipsFontSize 12.0
 ##
-defaults write NSUserFixedPitchFont JetBrainsMono-Regular 
-defaults write NSUserFixedPitchFontSize 12.0
+defaults write NSGlobalDomain NSUserFixedPitchFont JetBrainsMono-Regular 
+defaults write NSGlobalDomain NSUserFixedPitchFontSize 12.0
 ##
-defaults write NSUserFont SFProDisplay-Regular 
-defaults write NSUserFontSize 12.0
+defaults write NSGlobalDomain NSUserFont SFProDisplay-Regular 
+defaults write NSGlobalDomain NSUserFontSize 12.0
 
 # GWorkspace
 defaults write GWorkspace imagepath /System/Library/Desktop\ Pictures/
