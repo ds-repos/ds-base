@@ -204,6 +204,15 @@ fonts()
   cd ${SRC} && rm -rf ${SRC}/$termfont
 }
 
+themes()
+{
+  # https://github.com/gnustep/plugins-themes-sombre.git
+  sombre_theme=plugins-themes-sombre
+  cd ${SRC}/$sombre_theme
+  gmake
+  gmake install GNUSTEP_INSTALLATION_DOMAIN=SYSTEM 
+}
+
 gnustep-make
 libobjc2
 gnustep
@@ -215,3 +224,4 @@ bonjour
 services
 sudoers
 fonts
+themes
