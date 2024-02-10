@@ -185,11 +185,23 @@ sudoers()
 
 fonts()
 {
-  sysfont_repo=San-Francisco-Pro-Fonts 
+  sysfont=San-Francisco-Pro-Fonts 
+  termfont=JetBrainsMono
+  fonts_dir=/System/Library/Fonts
+
   if [ ! -d "/System/Library/Fonts" ] ; then
-    mkdir /System/Library/Fonts
+    mkdir $fonts_dir
   fi
-  cp -R ${SRC}/$sysfont_repo/*.otf /System/Library/Fonts
+
+  # SF Pro
+  cp -R ${SRC}/$sysfont/*.otf $fonts_dir
+
+  # JetBrains NerdFont
+  mkdir ${SRC}/$termfont && cd ${SRC}/$termfont
+  fetch https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
+  unzip JetBrainsMono.zip
+  mv ./*.ttf $fonts_dir
+  cd ${SRC} && rm -rf ${SRC}/$termfont
 }
 
 gnustep-make
