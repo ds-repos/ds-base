@@ -1,7 +1,15 @@
-# bsdstep
-GNUstep build wrapper for FreeBSD
+# DUBstep
+DUBstep is an experimental project intended for developers (for now).
 
-This is an experimental project intended for developers at this time.
+DUBstep stands for:
+
+- D for desktop
+- U for Unix
+- B for BSD
+- step for GNUstep
+
+It is essentially a GNUstep build wrapper for FreeBSD. The way to use it is to take a FreeBSD installation, clone the repo and install it on top.
+While it can be installed on a running system with users already created, ideally you should have a fresh FreeBSD installation with no users and install it from the root account. More installation instructions are below.
 
 ## Overview
 
