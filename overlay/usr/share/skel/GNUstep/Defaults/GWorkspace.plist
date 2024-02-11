@@ -29,6 +29,8 @@
 	<string>TextEdit</string>
 	<key>2</key>
 	<string>Terminal</string>
+	<key>3</key>
+	<string>SystemPreferences</string>
     </dict>
     <key>auto_calculate_sizes</key>
     <string>NO</string>
