@@ -187,10 +187,10 @@ fonts()
 {
   sysfont=San-Francisco-Pro-Fonts 
   termfont=JetBrainsMono
-  fonts_dir=/System/Library/Fonts
+  fonts_dir=/usr/share/skel/dot.local/share/fonts/
 
-  if [ ! -d "/System/Library/Fonts" ] ; then
-    mkdir $fonts_dir
+  if [ ! -d "${fonts_dir}" ] ; then
+    mkdir -p $fonts_dir
   fi
 
   # SF Pro
