@@ -1,9 +1,9 @@
 #!/bin/sh
 
 # TERMINAL.APP
-defaults write Terminal BoldTerminalFont JetBrainsMono-Regular
+defaults write Terminal BoldTerminalFont JetBrainsMonoNLNFM-Bold
 defaults write Terminal BoldTerminalFontSize 16
-defaults write Terminal TerminalFont JetBrainsMono-Regular
+defaults write Terminal TerminalFont JetBrainsMonoNLNFM-Medium
 defaults write Terminal TerminalFontSize 16
 
 # WINDOW MANAGEMENT
@@ -45,7 +45,7 @@ defaults write NSGlobalDomain NSTitleBarFontSize 12.0
 defaults write NSGlobalDomain NSToolTipsFont SFPRODisplay-Regular 
 defaults write NSGlobalDomain NSToolTipsFontSize 12.0
 ##
-defaults write NSGlobalDomain NSUserFixedPitchFont JetBrainsMono-Regular 
+defaults write NSGlobalDomain NSUserFixedPitchFont JetBrainsMonoNLNFM-Medium
 defaults write NSGlobalDomain NSUserFixedPitchFontSize 12.0
 ##
 defaults write NSGlobalDomain NSUserFont SFProDisplay-Regular 

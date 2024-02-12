@@ -185,11 +185,23 @@ sudoers()
 
 fonts()
 {
-  sysfont_repo=San-Francisco-Pro-Fonts 
-  if [ ! -d "/System/Library/Fonts" ] ; then
-    mkdir /System/Library/Fonts
+  sysfont=San-Francisco-Pro-Fonts 
+  termfont=JetBrainsMono
+  fonts_dir=/usr/share/skel/dot.local/share/fonts/
+
+  if [ ! -d "${fonts_dir}" ] ; then
+    mkdir -p $fonts_dir
   fi
-  cp -R ${SRC}/$sysfont_repo/*.otf /System/Library/Fonts
+
+  # SF Pro
+  cp -R ${SRC}/$sysfont/*.otf $fonts_dir
+
+  # JetBrains NerdFont
+  mkdir ${SRC}/$termfont && cd ${SRC}/$termfont
+  fetch https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/JetBrainsMono.zip
+  unzip JetBrainsMono.zip
+  mv ./*.ttf $fonts_dir
+  cd ${SRC} && rm -rf ${SRC}/$termfont
 }
 
 themes()
