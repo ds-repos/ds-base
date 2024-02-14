@@ -28,7 +28,6 @@ set_wayland() {
   defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
 
   echo "Starting $WINDOW_MANAGER..."
-  # GWorkspace &
   exec $WINDOW_MANAGER
 }
 set_x11() {
@@ -38,7 +37,7 @@ set_x11() {
   startx
 }
 
-case "$WINDOW_MANAGER" in
+case "$1" in
   "x11")
     set_x11
     ;;
