@@ -32,14 +32,14 @@ set_wayland() {
 }
 set_x11() {
   # Don't let GWorkspace hijack window manager duties
-  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 1
-  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 1
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
   startx
 }
 
 case "$WINDOW_MANAGER" in
   "x11")
-    set_gworkspace
+    set_x11
     ;;
   "wayland")
     set_wayland
