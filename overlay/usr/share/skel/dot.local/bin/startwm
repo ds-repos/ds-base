@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# Check if an argument is provided
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <x11 | wayland>"
+  exit 1
+fi
+
+# WARNING:
+# Not sure how well this works with X11 window managers
+# but the wayland stuff should be solid. Will probably 
+# move all these to session files once we pull in a suitable
+# login manager
+
+# Access the first (and only) argument
+export WINDOW_MANAGER="$1"
+echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
+
+set_wayland() {
+  export GDK_BACKEND="wayland,x11"
+  export XDG_RUNTIME_DIR=$HOME/.xdg_runtime
+  export XDG_CURRENT_DESKTOP=$WINDOW_MANAGER
+  export XDG_SESSION_DESKTOP=$WINDOW_MANAGER
+  
+  # Don't let GWorkspace hijack window manager duties
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 1
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 1
+  
+  echo "Starting $WINDOW_MANAGER..."
+  # GWorkspace &
+  exec $WINDOW_MANAGER
+}
+set_x11() {
+  # Don't let GWorkspace hijack window manager duties
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 1
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 1
+  startx
+}
+
+case "$WINDOW_MANAGER" in
+  "x11")
+    set_gworkspace
+    ;;
+  "wayland")
+    set_wayland
+    ;;
+  *)
+    echo "Invalid option. Setting window manager to default (openbox)"
+    exit 1
+    ;;
+esac
