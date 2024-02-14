@@ -12,8 +12,8 @@ fi
 # move all these to session files once we pull in a suitable
 # login manager
 
-# Access the first (and only) argument
-export WINDOW_MANAGER="$1"
+
+export WINDOW_MANAGER="GWorkspace"
 echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
 
 set_wayland() {
@@ -22,16 +22,17 @@ set_wayland() {
   export XDG_CURRENT_DESKTOP=$WINDOW_MANAGER
   export XDG_SESSION_DESKTOP=$WINDOW_MANAGER
   
-  # Don't let GWorkspace hijack window manager duties
-  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 1
-  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 1
-  
+  # Set the next two values to 0 to let GWorkspace handle wayland compositor duties
+  # or set to 1 to let another wayland compositor be the window manager
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
+
   echo "Starting $WINDOW_MANAGER..."
   # GWorkspace &
   exec $WINDOW_MANAGER
 }
 set_x11() {
-  # Don't let GWorkspace hijack window manager duties
+  # Let GWorkspace handle window manager duties
   defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
   defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
   startx
