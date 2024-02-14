@@ -15,3 +15,13 @@ export PATH="/opt/bin:$PATH"
 
 # Source GNUstep.sh
 source /System/Library/Makefiles/GNUstep.sh
+
+# Wayland VARS
+export XDG_RUNTIME_DIR=$HOME/.xdg_runtime
+if [ ! -d "$XDG_RUNTIME_DIR" ]; then
+  mkdir -p "$XDG_RUNTIME_DIR"
+fi
+
+export GDK_BACKEND="wayland,x11"
+export XDG_CURRENT_DESKTOP=wayfire
+export XDG_SESSION_DESKTOP=wayfire
