@@ -20,7 +20,7 @@ gnustep-make() {
   else
     cd "${SRC}/tools-make" && ./configure \
       --with-thread-lib=-pthread \
-      --with-layout=${SRC}/ds-build/conf/dubstep.conf \
+      --with-layout=dubstep \
       --with-config-file=/Library/Preferences/GNUstep.conf \
       --enable-objc-nonfragile-abi \
       --enable-native-objc-exceptions \
