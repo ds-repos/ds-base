@@ -14,9 +14,9 @@ CWD="$(realpath)"
 
 gnustep-make() {
   # Check if GNUstep.sh exists
-  if [ -f "/System/Library/Makefiles/GNUstep.sh" ]; then
+  if [ -f "/Developer/Makefiles/GNUstep.sh" ]; then
     echo "tools-make already exists. Skipping installation."
-    . /System/Library/Makefiles/GNUstep.sh
+    . /Developer/Makefiles/GNUstep.sh
   else
     cd "${SRC}/tools-make" && ./configure \
       --with-thread-lib=-pthread \
@@ -26,10 +26,9 @@ gnustep-make() {
       --enable-native-objc-exceptions \
       --with-library-combo=ng-gnu-gnu \
        && gmake && gmake install
-    . /System/Library/Makefiles/GNUstep.sh
+    . /Developer/Makefiles/GNUstep.sh
   fi
 }
-
 
 libobjc2() {
   local repo_dir="${SRC}/libobjc2"
