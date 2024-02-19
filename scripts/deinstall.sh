@@ -8,13 +8,25 @@ fi
 
 remove_local()
 {
-  rm -rf /Local
+  if [ -d "/Local/" ] ; then
+    rm -rf /Local
+  fi  
+}
+
+remove_opt()
+{
+  if [ -d "/opt" ] ; then
+    rm -rf /opt
+  fi
 }
 
 remove_system()
 {
-  rm -rf /System
+  if [ -d "/System "] ; then
+    rm -rf /System
+  fi
 }
 
 remove_local
+remove_opt
 remove_system
