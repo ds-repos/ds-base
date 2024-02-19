@@ -13,7 +13,6 @@ fi
 CWD="$(realpath)"
 
 gnustep-make() {
-  local install_prefix="/"
   # Check if GNUstep.sh exists
   if [ -f "/System/Library/Makefiles/GNUstep.sh" ]; then
     echo "tools-make already exists. Skipping installation."
@@ -21,9 +20,8 @@ gnustep-make() {
   else
     cd "${SRC}/tools-make" && ./configure \
       --with-thread-lib=-pthread \
-      --prefix="${install_prefix}" \
       --with-layout=dubstep \
-      --with-config-file=${GNUSTEP_PREFIX}/etc/GNUstep.conf \
+      --with-config-file=/Library/Preferences/GNUstep.conf \
       --enable-objc-nonfragile-abi \
       --enable-native-objc-exceptions \
       --with-library-combo=ng-gnu-gnu \
