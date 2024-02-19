@@ -97,11 +97,12 @@ gnustep() {
   else
     cd "${SRC}/apps-gworkspace" && ./configure && gmake && gmake install
   fi
+  cd ${SRC}/apps-systempreferences && gmake && gmake install
 }
 
 apps()
 {
-  cd ${SRC}/apps-systempreferences && gmake && gmake install
+  unset GNUSTEP_INSTALLATION_DOMAIN
   cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
   cd ${SRC}/gs-textedit && gmake && gmake install
 }
