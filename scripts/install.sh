@@ -45,7 +45,7 @@ libobjc2() {
   fi
 
   # Change to Build directory and configure/build the project
-  if [ -f "/Local/Library/Headers/Block.h" ] ; then
+  if [ -f "/System/Library/Headers/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
     (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
@@ -56,7 +56,7 @@ libobjc2() {
 gnustep() {
   local LOCALBASE="/usr/local"
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-  if [ -d "/Local/Library/Libraries/gnustep-base/" ] ; then
+  if [ -d "/System/Library/Libraries/gnustep-base/" ] ; then
     echo "gnustep-base already exists. Skipping installation."
   else
     cd "${SRC}/libs-base" && ./configure \
@@ -65,7 +65,7 @@ gnustep() {
       --with-zeroconf-api=mdns \
       && gmake && gmake install
   fi
-  if [ -d "/Local/Library/PostScript/" ] ; then
+  if [ -d "/System/Library/Libraries/gnustep-gui" ] ; then
     echo "libs-gui already exists.  Skipping installation."
   else
     cd "${SRC}/libs-gui" && ./configure \
@@ -78,7 +78,7 @@ gnustep() {
       --with-x-include=${LOCALBASE}/lib \
       && gmake && gmake install
   fi
-  if [ -d "/Local/Library/Fonts" ] ; then
+  if [ -d "/System/Library/Bundles/libgnustep-back-030.bundle" ] ; then
     echo "libs-back already exists. Skipping installation."
   else
     cd "${SRC}/libs-back" && ./configure \
@@ -92,12 +92,16 @@ gnustep() {
       --disable-glitz \
       && gmake && gmake install
   fi
-  if [ -d "/Local/Applications/GWorkspace.app" ] ; then
+  if [ -d "/System/Applications/GWorkspace.app" ] ; then
     echo "Gworkspace already exists.  Skipping installation."
   else
     cd "${SRC}/apps-gworkspace" && ./configure && gmake && gmake install
   fi
-  cd ${SRC}/apps-systempreferences && gmake && gmake install
+  if [ -d "/System/Applications/SystemPreferences.app" ] ; then
+    echo "SystemPreferences already exists.  Skipping installation."
+  else
+    cd ${SRC}/apps-systempreferences && gmake && gmake install
+  fi
 }
 
 apps()
