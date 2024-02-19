@@ -22,9 +22,8 @@ gnustep-make() {
     cd "${SRC}/tools-make" && ./configure \
       --with-thread-lib=-pthread \
       --prefix="${install_prefix}" \
-      --with-layout=gnustep \
+      --with-layout=dubstep \
       --with-config-file=${GNUSTEP_PREFIX}/etc/GNUstep.conf \
-      --with-layout=gnustep \
       --enable-objc-nonfragile-abi \
       --enable-native-objc-exceptions \
       --with-library-combo=ng-gnu-gnu \
