@@ -9,6 +9,9 @@ fi
 # Source build.conf
 . ../conf/build.conf
 
+# Source GNUstep.conf for overrides to FS layout
+. ../conf/GNUstep.conf
+
 # This variable allows getting back to this repo
 CWD="$(realpath)"
 
