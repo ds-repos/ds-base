@@ -37,6 +37,7 @@ gnustep-make() {
 libobjc2() {
   local repo_dir="${SRC}/libobjc2"
   local build_dir="${repo_dir}/Build"
+  local GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
   # Check if Build directory exists
   if [ ! -d "$build_dir" ]; then
@@ -54,6 +55,7 @@ libobjc2() {
 
 gnustep() {
   local LOCALBASE="/usr/local"
+  local GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
   if [ -d "/Local/Library/Libraries/gnustep-base/" ] ; then
     echo "gnustep-base already exists. Skipping installation."
   else
