@@ -15,8 +15,15 @@ remove_applications()
 
 remove_developer()
 {
-  if [ -d "/Developer" ] ;
+  if [ -d "/Developer" ] ; then
     rm -rf /Developer
+  fi
+}
+
+remove_library()
+{
+  if [ -d "/Library" ] ; then
+    rm -rf /Library
   fi
 }
 
@@ -43,6 +50,7 @@ remove_system()
 
 remove_applications
 remove_developer
+remove_library
 remove_local
 remove_opt
 remove_system
