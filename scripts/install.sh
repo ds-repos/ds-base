@@ -49,6 +49,28 @@ libobjc2() {
   fi
 }
 
+libdispatch() {
+  local repo_dir="${SRC}/libdispatch"
+  local build_dir="${repo_dir}/Build"
+  export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+
+  # Check if Build directory exists
+  if [ ! -d "$build_dir" ]; then
+    mkdir "$build_dir"
+  fi
+
+  cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
+  cd "$build_dir" && ninja install
+
+  # Change to Build directory and configure/build the project
+  #if [ -f "/System/Include/Block.h" ] ; then
+  #  echo "libobjc already exists. Skipping installation."
+  #else
+  #  (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
+  #  (cd "$build_dir" && ninja install)
+  #fi
+}
+
 gnustep() {
   local LOCALBASE="/usr/local"
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
@@ -218,6 +240,7 @@ themes()
 
 gnustep-make
 libobjc2
+libdispatch
 gnustep
 apps
 overlay
