@@ -50,7 +50,7 @@ libobjc2() {
 }
 
 libdispatch() {
-  local repo_dir="${SRC}/libdispatch"
+  local repo_dir="${SRC}/swift-corelibs-libdispatch"
   local build_dir="${repo_dir}/Build"
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
@@ -59,8 +59,19 @@ libdispatch() {
     mkdir "$build_dir"
   fi
 
-  cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++
-  cd "$build_dir" && ninja install
+  cd "$build_dir" && cmake .. \
+	-DCMAKE_C_COMPILER=clang \
+	-DCMAKE_CXX_COMPILER=clang++ \
+	-DCMAKE_SKIP_RPATH=ON \
+	-DCMAKE_BUILD_TYPE=$BTYPE \
+	-DCMAKE_INSTALL_PREFIX=/System \
+	-DCMAKE_INSTALL_LIBDIR=/System/lib \
+	-DINSTALL_PRIVATE_HEADERS=YES \
+	-DUSE_GOLD_LINKER=YES \
+	-DENABLE_TESTING=OFF \
+	-DCMAKE_VERBOSE_MAKEFILE=ON
+  cd "$build_dir" && make
+  cd "$build_dir" && make install
 
   # Change to Build directory and configure/build the project
   #if [ -f "/System/Include/Block.h" ] ; then
