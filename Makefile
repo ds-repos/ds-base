@@ -13,6 +13,3 @@ deinstall:
 
 clean:
 	cd scripts && ./clean.sh
-
-image:
-	cd scripts && ./image.sh

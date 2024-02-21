@@ -23,12 +23,12 @@ To install `DUBstep`, follow these steps:
 2. Login as the root user
 3. Fetch the zip archive:
    ```
-   fetch https://codeload.github.com/ds-repos/ds-build/zip/refs/heads/main -o ds-build.zip
+   fetch https://codeload.github.com/ds-repos/ds-base/zip/refs/heads/main -o ds-bsbase.zip
    ```
 4. Extract the archive and navigate to the project directory:
    ```
-   unzip ds-build.zip
-   cd ds-build-main
+   unzip ds-base.zip
+   cd ds-base-main
    ```
 5. Build and install the project as root:
    ```
