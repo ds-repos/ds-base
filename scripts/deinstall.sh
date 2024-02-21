@@ -31,7 +31,7 @@ remove_local()
 {
   if [ -d "/Local" ] ; then
     rm -rf /Local
-  fi
+  fi  
 }
 
 remove_opt()
@@ -43,7 +43,7 @@ remove_opt()
 
 remove_system()
 {
-  if [ -d "/System" ] ; then
+  if [ -d "/System "] ; then
     rm -rf /System
   fi
 }

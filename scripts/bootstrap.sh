@@ -11,12 +11,7 @@ fi
 
 packages()
 {
-  if [ -f "/ds-build.zip" ]; then
-    echo "Running inside builder image. Skipping pkg bootstrap."
-    return 0
-  else
-    cat ../conf/ports.conf | xargs pkg install -y
-  fi
+  cat ../conf/ports.conf | xargs pkg install -y
 }
 
 packages
