@@ -13,26 +13,22 @@ fi
 CWD="$(realpath)"
 
 gnustep-make() {
-  local install_prefix="/"
   # Check if GNUstep.sh exists
-  if [ -f "/System/Library/Makefiles/GNUstep.sh" ]; then
+  if [ -f "/Developer/Makefiles/GNUstep.sh" ]; then
     echo "tools-make already exists. Skipping installation."
-    . /System/Library/Makefiles/GNUstep.sh
+    . /Developer/Makefiles/GNUstep.sh
   else
     cd "${SRC}/tools-make" && ./configure \
       --with-thread-lib=-pthread \
-      --prefix="${install_prefix}" \
-      --with-layout=gnustep \
-      --with-config-file=${GNUSTEP_PREFIX}/etc/GNUstep.conf \
-      --with-layout=gnustep \
+      --with-layout=dubstep \
+      --with-config-file=/Library/Preferences/GNUstep.conf \
       --enable-objc-nonfragile-abi \
       --enable-native-objc-exceptions \
       --with-library-combo=ng-gnu-gnu \
        && gmake && gmake install
-    . /System/Library/Makefiles/GNUstep.sh
+    . /Developer/Makefiles/GNUstep.sh
   fi
 }
-
 
 libobjc2() {
   local repo_dir="${SRC}/libobjc2"
@@ -45,7 +41,7 @@ libobjc2() {
   fi
 
   # Change to Build directory and configure/build the project
-  if [ -f "/System/Library/Headers/Block.h" ] ; then
+  if [ -f "/System/Include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
     (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
@@ -56,7 +52,7 @@ libobjc2() {
 gnustep() {
   local LOCALBASE="/usr/local"
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
-  if [ -d "/System/Library/Libraries/gnustep-base/" ] ; then
+  if [ -d "/System/Libraries/gnustep-base/" ] ; then
     echo "gnustep-base already exists. Skipping installation."
   else
     cd "${SRC}/libs-base" && ./configure \
@@ -65,7 +61,7 @@ gnustep() {
       --with-zeroconf-api=mdns \
       && gmake && gmake install
   fi
-  if [ -d "/System/Library/Libraries/gnustep-gui" ] ; then
+  if [ -d "/System/Libraries/gnustep-gui" ] ; then
     echo "libs-gui already exists.  Skipping installation."
   else
     cd "${SRC}/libs-gui" && ./configure \
@@ -78,7 +74,7 @@ gnustep() {
       --with-x-include=${LOCALBASE}/lib \
       && gmake && gmake install
   fi
-  if [ -d "/System/Library/Bundles/libgnustep-back-030.bundle" ] ; then
+  if [ -d "/System/Bundles/libgnustep-back-030.bundle" ] ; then
     echo "libs-back already exists. Skipping installation."
   else
     cd "${SRC}/libs-back" && ./configure \

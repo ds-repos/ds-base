@@ -14,4 +14,4 @@ export EDITOR=nano
 export PATH="/opt/bin:$PATH"
 
 # Source GNUstep.sh
-source /System/Library/Makefiles/GNUstep.sh
+source /Developer/Makefiles/GNUstep.sh
