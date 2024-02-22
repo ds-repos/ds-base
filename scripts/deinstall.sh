@@ -43,7 +43,7 @@ remove_opt()
 
 remove_system()
 {
-  if [ -d "/System "] ; then
+  if [ -d "/System"] ; then
     rm -rf /System
   fi
 }
