@@ -1,0 +1,9 @@
+#!/bin/sh
+
+. /Developer/Makefiles/GNUstep.sh
+
+VBoxClient --display
+
+sleep 1
+
+exec wmaker --static & openapp GWorkspace
