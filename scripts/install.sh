@@ -100,6 +100,26 @@ gnustep() {
   fi
 }
 
+developer()
+{
+  export GNUSTEP_INSTALLATION_DOMAIN=NETWORK
+  if [ -d "/Developer/Applications/Gorm.app" ] ; then
+    echo "Gorm already exists.  Skipping installation."
+  else
+    cd "${SRC}/apps-gorm" && gmake && gmake install
+  fi
+    if [ -d "/Developer/Applications/ProjectCenter.app" ] ; then
+    echo "ProjectCenter already exists.  Skipping installation."
+  else
+    cd "${SRC}/apps-projectcenter" && gmake && gmake install
+  fi
+    if [ -d "/Developer/Applications/WrapperFactory.app" ] ; then
+    echo "WrapperFactory already exists.  Skipping installation."
+  else
+    cd "${SRC}/gs-desktop/Applications/WrapperFactory" && gmake && gmake install
+  fi
+}
+
 apps()
 {
   unset GNUSTEP_INSTALLATION_DOMAIN
@@ -214,6 +234,7 @@ themes()
 gnustep-make
 libobjc2
 gnustep
+developer
 apps
 overlay
 sysctl
