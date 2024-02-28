@@ -13,30 +13,27 @@ fi
 CWD="$(realpath)"
 
 gnustep-make() {
-  local install_prefix="/"
   # Check if GNUstep.sh exists
-  if [ -f "/System/Library/Makefiles/GNUstep.sh" ]; then
+  if [ -f "/Developer/Makefiles/GNUstep.sh" ]; then
     echo "tools-make already exists. Skipping installation."
-    . /System/Library/Makefiles/GNUstep.sh
+    . /Developer/Makefiles/GNUstep.sh
   else
     cd "${SRC}/tools-make" && ./configure \
       --with-thread-lib=-pthread \
-      --prefix="${install_prefix}" \
-      --with-layout=gnustep \
-      --with-config-file=${GNUSTEP_PREFIX}/etc/GNUstep.conf \
-      --with-layout=gnustep \
+      --with-layout=dubstep \
+      --with-config-file=/Library/Preferences/GNUstep.conf \
       --enable-objc-nonfragile-abi \
       --enable-native-objc-exceptions \
       --with-library-combo=ng-gnu-gnu \
        && gmake && gmake install
-    . /System/Library/Makefiles/GNUstep.sh
+    . /Developer/Makefiles/GNUstep.sh
   fi
 }
-
 
 libobjc2() {
   local repo_dir="${SRC}/libobjc2"
   local build_dir="${repo_dir}/Build"
+  export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
 
   # Check if Build directory exists
   if [ ! -d "$build_dir" ]; then
@@ -44,7 +41,7 @@ libobjc2() {
   fi
 
   # Change to Build directory and configure/build the project
-  if [ -f "/Local/Library/Headers/Block.h" ] ; then
+  if [ -f "/System/Include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
     (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
@@ -54,7 +51,8 @@ libobjc2() {
 
 gnustep() {
   local LOCALBASE="/usr/local"
-  if [ -d "/Local/Library/Libraries/gnustep-base/" ] ; then
+  export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+  if [ -d "/System/Libraries/gnustep-base/" ] ; then
     echo "gnustep-base already exists. Skipping installation."
   else
     cd "${SRC}/libs-base" && ./configure \
@@ -63,7 +61,7 @@ gnustep() {
       --with-zeroconf-api=mdns \
       && gmake && gmake install
   fi
-  if [ -d "/Local/Library/PostScript/" ] ; then
+  if [ -d "/System/Libraries/gnustep-gui" ] ; then
     echo "libs-gui already exists.  Skipping installation."
   else
     cd "${SRC}/libs-gui" && ./configure \
@@ -76,7 +74,7 @@ gnustep() {
       --with-x-include=${LOCALBASE}/lib \
       && gmake && gmake install
   fi
-  if [ -d "/Local/Library/Fonts" ] ; then
+  if [ -d "/System/Bundles/libgnustep-back-030.bundle" ] ; then
     echo "libs-back already exists. Skipping installation."
   else
     cd "${SRC}/libs-back" && ./configure \
@@ -91,16 +89,41 @@ gnustep() {
       --disable-glitz \
       && gmake && gmake install
   fi
-  if [ -d "/Local/Applications/GWorkspace.app" ] ; then
+  if [ -d "/System/Applications/GWorkspace.app" ] ; then
     echo "Gworkspace already exists.  Skipping installation."
   else
     cd "${SRC}/apps-gworkspace" && ./configure && gmake && gmake install
+  fi
+  if [ -d "/System/Applications/SystemPreferences.app" ] ; then
+    echo "SystemPreferences already exists.  Skipping installation."
+  else
+    cd ${SRC}/apps-systempreferences && gmake && gmake install
+  fi
+}
+
+developer()
+{
+  export GNUSTEP_INSTALLATION_DOMAIN=NETWORK
+  if [ -d "/Developer/Applications/Gorm.app" ] ; then
+    echo "Gorm already exists.  Skipping installation."
+  else
+    cd "${SRC}/apps-gorm" && gmake && gmake install
+  fi
+    if [ -d "/Developer/Applications/ProjectCenter.app" ] ; then
+    echo "ProjectCenter already exists.  Skipping installation."
+  else
+    cd "${SRC}/apps-projectcenter" && gmake && gmake install
+  fi
+    if [ -d "/Developer/Applications/WrapperFactory.app" ] ; then
+    echo "WrapperFactory already exists.  Skipping installation."
+  else
+    cd "${SRC}/gs-desktop/Applications/WrapperFactory" && gmake && gmake install
   fi
 }
 
 apps()
 {
-  cd ${SRC}/apps-systempreferences && gmake && gmake install
+  unset GNUSTEP_INSTALLATION_DOMAIN
   cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
   cd ${SRC}/gs-textedit && gmake && gmake install
 }
@@ -152,10 +175,6 @@ bonjour() {
 }
 
 services() {
-  if [ -f "/ds-build.zip" ]; then
-    echo "Running inside builder image. Skipping service startup."
-    return 0
-  else
   # Directory path
   RC_CONF_D="/etc/rc.conf.d/"
 
@@ -176,7 +195,6 @@ services() {
       echo "File $file is not a regular file. Skipping."
     fi
   done
-  fi
 }
 
 sudoers()
@@ -217,6 +235,7 @@ themes()
 gnustep-make
 libobjc2
 gnustep
+developer
 apps
 overlay
 sysctl
