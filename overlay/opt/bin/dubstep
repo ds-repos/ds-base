@@ -2,7 +2,7 @@
 
 # Check if an argument is provided
 if [ $# -eq 0 ]; then
-  echo "Usage: $0 <x11 | wayland | GWorkspace>"
+  echo "Usage: $0 <x11 | wayland | gnustep>"
   echo "x11 option starts x11 with wmaker"
   echo "wayland session starts Hyprland"
   echo GWorkspace will start 
