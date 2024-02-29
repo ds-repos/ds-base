@@ -2,7 +2,10 @@
 
 # Check if an argument is provided
 if [ $# -eq 0 ]; then
-  echo "Usage: $0 <x11 | wayland>"
+  echo "Usage: $0 <x11 | wayland | GWorkspace>"
+  echo "x11 option starts x11 with wmaker"
+  echo "wayland session starts Hyprland"
+  echo GWorkspace will start 
   exit 1
 fi
 
@@ -12,9 +15,7 @@ fi
 # move all these to session files once we pull in a suitable
 # login manager
 
-
-export WINDOW_MANAGER="GWorkspace"
-echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
+. /Developer/Makefiles/GNUstep.sh
 
 set_wayland() {
   export GDK_BACKEND="wayland,x11"
@@ -31,9 +32,19 @@ set_wayland() {
   exec $WINDOW_MANAGER
 }
 set_x11() {
+  export WINDOW_MANAGER="wmaker"
+  echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
   # Let GWorkspace handle window manager duties
   defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
   defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
+  startx
+}
+set_gworkspace() {
+  export WINDOW_MANAGER="GWorkspace"
+  echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
+  # Let GWorkspace handle window manager duties
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 1
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 1
   startx
 }
 
@@ -44,8 +55,11 @@ case "$1" in
   "wayland")
     set_wayland
     ;;
+  "gnustep")
+    set_gworkspace
+    ;;
   *)
-    echo "Invalid option. Setting window manager to default (openbox)"
+    echo "Invalid option."
     exit 1
     ;;
 esac
