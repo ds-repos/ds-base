@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Check if at least one argument is provided
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <workspace-number> <1080p | 1440p | 4k> ..."
+    exit 1
+fi
+
+RES=1920x1080
+
+# EXAMPLE RESOLUTIONS
+# 720p = 1280x800
+# 1080p = 1920x1080
+# 1440p = 2560x1440
+# 4k = 3840x2160
+
+if [ "$2" == "720p" ]; then
+	RES=1280x800
+fi
+
+if [ "$2" == "1080p" ]; then
+	RES=1920x1080
+fi
+
+if [ "$2" == "1440p" ]; then
+	RES=2560x1440
+fi
+
+if [ "$2" == "4k" ]; then
+	RES=3840x2160
+fi
+
+echo "Setting geometry to $RES"
+
+defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
+defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
+# Xwayland -geometry $RES -fullscreen -noreset :$1 &
+Xwayland +xinerama -force-xrandr-emulation  -geometry $RES -noreset :$1 &
+$(DISPLAY=:$1 GWorkspace) &
