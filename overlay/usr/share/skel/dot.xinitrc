@@ -5,10 +5,10 @@ picom --config /opt/etc/picom.conf
 # exec dubstep-x11
 case $WINDOW_MANAGER in 
     "wmaker")
-      exec wmaker --static & openapp GWorkspace
+      exec wmaker --static & GWorkspace
     ;;
     "GWorkspace")
-      exec GWorkspace &
+      exec GWorkspace
     ;;
   *)
     echo "Invalid option."

@@ -2,7 +2,7 @@
 
 # Check if an argument is provided
 if [ $# -eq 0 ]; then
-  echo "Usage: $0 <x11 | wayland | gnustep>"
+  echo "Usage: $0 <-x for x11 | -w for wayland | -g for gnustep>"
   echo "x11 option starts x11 with wmaker"
   echo "wayland session starts Hyprland"
   echo GWorkspace will start 
@@ -49,13 +49,13 @@ set_gworkspace() {
 }
 
 case "$1" in
-  "x11")
+  "-x")
     set_x11
     ;;
-  "wayland")
+  "-w")
     set_wayland
     ;;
-  "gnustep")
+  "-g")
     set_gworkspace
     ;;
   *)
