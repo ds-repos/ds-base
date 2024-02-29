@@ -17,6 +17,9 @@ export PATH="/opt/bin:$PATH"
 source /Developer/Makefiles/GNUstep.sh
 # source /System/Library/Makefiles/GNUstep.sh
 
+# X11 VARS
+export WINDOW_MANAGER="wmaker"
+
 # Wayland VARS
 export XDG_RUNTIME_DIR=$HOME/.xdg_runtime
 if [ ! -d "$XDG_RUNTIME_DIR" ]; then

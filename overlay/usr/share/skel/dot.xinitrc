@@ -4,7 +4,7 @@ picom --config /opt/etc/picom.conf
 
 # exec dubstep-x11
 case $WINDOW_MANAGER in 
-    "x11")
+    "wmaker")
       exec wmaker --static & openapp GWorkspace
     ;;
     "GWorkspace")

@@ -28,26 +28,24 @@ set_wayland() {
   defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
   defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
 
-  export WINDOW_MANAGER="Hyprland"
+  WINDOW_MANAGER="Hyprland"
   echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
   echo "Starting $WINDOW_MANAGER..."
   exec $WINDOW_MANAGER
 }
 set_x11() {
-  export WINDOW_MANAGER="wmaker"
   echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
   # Let GWorkspace handle window manager duties
   defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
   defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
-  startx
+  WINDOW_MANAGER="wmaker" && startx
 }
 set_gworkspace() {
-  export WINDOW_MANAGER="GWorkspace"
   echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
   # Let GWorkspace handle window manager duties
   defaults write NSGlobalDomain GSBackHandlesWindowDecorations 1
   defaults write NSGlobalDomain GSBackUsesNativeTaskbar 1
-  startx
+  WINDOW_MANAGER="GWorkspace" && startx
 }
 
 case "$1" in
