@@ -126,6 +126,7 @@ apps()
   unset GNUSTEP_INSTALLATION_DOMAIN
   cd ${SRC}/gap/system-apps/Terminal && gmake && gmake install
   cd ${SRC}/gs-textedit && gmake && gmake install
+  cp -R ${SRC}/gs-desktop/extra-apps/Firefox.app /Applications/
 }
 
 overlay()
