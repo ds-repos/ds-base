@@ -1,0 +1,5 @@
+#!/bin/sh
+
+. /Developer/Makefiles/GNUstep.sh
+
+exec wmaker --static & openapp GWorkspace

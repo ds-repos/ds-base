@@ -25,11 +25,13 @@
     <string>GWorkspace</string>
     <key>applications</key>
     <dict>
-	<key>1</key>
-	<string>TextEdit</string>
+    <key>1</key>
+	<string>Firefox</string>
 	<key>2</key>
-	<string>Terminal</string>
+	<string>TextEdit</string>
 	<key>3</key>
+	<string>Terminal</string>
+	<key>4</key>
 	<string>SystemPreferences</string>
     </dict>
     <key>auto_calculate_sizes</key>
