@@ -85,7 +85,6 @@ gnustep() {
       --with-gif-library=${LOCALBASE}/lib \
       --with-gif-include=${LOCALBASE}/include \
       --enable-graphics=cairo \
-      --with-name=wayland \
       --disable-glitz \
       && gmake && gmake install
   fi

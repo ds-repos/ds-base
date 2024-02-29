@@ -28,6 +28,8 @@ set_wayland() {
   defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
   defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
 
+  export WINDOW_MANAGER="Hyprland"
+  echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
   echo "Starting $WINDOW_MANAGER..."
   exec $WINDOW_MANAGER
 }
