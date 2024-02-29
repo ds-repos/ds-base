@@ -36,15 +36,15 @@ set_wayland() {
 set_x11() {
   echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
   # Let GWorkspace handle window manager duties
-  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
-  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 1
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 1
   WINDOW_MANAGER="wmaker" && startx
 }
 set_gworkspace() {
   echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
   # Let GWorkspace handle window manager duties
-  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 1
-  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 1
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
   WINDOW_MANAGER="GWorkspace" && startx
 }
 
