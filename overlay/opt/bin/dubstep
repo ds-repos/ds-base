@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# Check if an argument is provided
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <-x for x11 | -w for wayland | -g for gnustep>"
+  echo "x11 option starts x11 with wmaker"
+  echo "wayland session starts Hyprland"
+  echo GWorkspace will start 
+  exit 1
+fi
+
+# WARNING:
+# Not sure how well this works with X11 window managers
+# but the wayland stuff should be solid. Will probably 
+# move all these to session files once we pull in a suitable
+# login manager
+
+. /Developer/Makefiles/GNUstep.sh
+
+set_wayland() {
+  export GDK_BACKEND="wayland,x11"
+  export XDG_RUNTIME_DIR=$HOME/.xdg_runtime
+  export XDG_CURRENT_DESKTOP=$WINDOW_MANAGER
+  export XDG_SESSION_DESKTOP=$WINDOW_MANAGER
+  
+  # Set the next two values to 0 to let GWorkspace handle wayland compositor duties
+  # or set to 1 to let another wayland compositor be the window manager
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
+
+  WINDOW_MANAGER="Hyprland"
+  echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
+  echo "Starting $WINDOW_MANAGER..."
+  exec $WINDOW_MANAGER
+}
+set_x11() {
+  echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
+  # Let GWorkspace handle window manager duties
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 1
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 1
+  WINDOW_MANAGER="wmaker" && startx
+}
+set_gworkspace() {
+  echo "Setting WINDOW_MANAGER environment variable to $WINDOW_MANAGER..."
+  # Let GWorkspace handle window manager duties
+  defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
+  defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
+  WINDOW_MANAGER="GWorkspace" && startx
+}
+
+case "$1" in
+  "-x")
+    set_x11
+    ;;
+  "-w")
+    set_wayland
+    ;;
+  "-g")
+    set_gworkspace
+    ;;
+  *)
+    echo "Invalid option."
+    exit 1
+    ;;
+esac

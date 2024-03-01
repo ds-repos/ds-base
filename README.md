@@ -41,11 +41,29 @@ To install `DUBstep`, follow these steps:
 
    This will install essential packages like cmake, ninja, mdnsresponder, and build GNUstep along with customized applications.
 
-   ## Customization
+### X11
+
+#### Starting X11 with WindowMaker as window manager
+
+`dubstep -x`
+
+#### Starting X11 with GWorkspace/GNUstep as window manager
+
+`dubstep -g`
+
+### Wayland
+
+#### How to launch Wayland with Hyprland as window manager
+
+`dubstep -w`
+
+> More details can be found in the WAYLAND.md file
+
+## Customization
 
    The interface is customized to resemble a modern macOS layout, including a global menu panel and dock. bsdstep utilizes GNUstep for handling window decorations without the need for an external window manager.
 
-   ## Building GNUstep Applications
+## Building GNUstep Applications
 
    * GWorkspace
    * Terminal
@@ -56,6 +74,6 @@ To install `DUBstep`, follow these steps:
 
    This project is geared towards developers and enthusiasts who want to develop Objective-C based software on FreeBSD. It will provide a development environment with a macOS-like experience for those interested in Objective-C programming on the FreeBSD platform.
 
-   ## Origins and Compatibility
+## Origins and Compatibility
 
    macOS, with its roots in NeXTSTEP, has historical ties to FreeBSD. Both macOS and NeXTSTEP leveraged FreeBSD components. The bsdstep project aims to carry forward this legacy and create a synergistic environment for FreeBSD users interested in a macOS-like experience.
