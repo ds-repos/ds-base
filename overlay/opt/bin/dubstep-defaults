@@ -7,8 +7,8 @@ defaults write Terminal TerminalFont JetBrainsMonoNLNFM-Medium
 defaults write Terminal TerminalFontSize 16
 
 # WINDOW MANAGEMENT
-defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
-defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
+# defaults write NSGlobalDomain GSBackHandlesWindowDecorations 0
+# defaults write NSGlobalDomain GSBackUsesNativeTaskbar 0
 
 # GLOBAL SETTINGS
 defaults write NSGlobalDomain GSSuppressAppIcon 1
