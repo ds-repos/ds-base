@@ -225,9 +225,8 @@ fonts()
 
 themes()
 {
-  # https://github.com/gnustep/plugins-themes-sombre.git
-  sombre_theme=plugins-themes-sombre
-  cd ${SRC}/$sombre_theme
+  default_theme=dubstep-dark-theme
+  cd ${SRC}/$default_theme
   gmake
   gmake install GNUSTEP_INSTALLATION_DOMAIN=SYSTEM 
 }
