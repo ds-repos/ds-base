@@ -22,7 +22,8 @@ gnustep-make() {
       --with-thread-lib=-pthread \
       --with-layout=dubstep \
       --with-config-file=/Library/Preferences/GNUstep.conf \
-      --enable-objc-arc \
+      --enable-objc-nonfragile-abi \
+      --enable-native-objc-exceptions \
       --with-library-combo=ng-gnu-gnu \
        && gmake && gmake install
     . /Developer/Makefiles/GNUstep.sh
@@ -61,7 +62,11 @@ gnustep() {
   if [ -d "/System/Libraries/gnustep-base/" ] ; then
     echo "gnustep-base already exists. Skipping installation."
   else
+    export OBJCFLAGS='-fobjc-runtime=gnustep-2.0 -fblocks' \
+		ac_cv_header_bfd_h=no ac_cv_lib_bfd_bfd_openr=no
     cd "${SRC}/libs-base" && ./configure \
+      --disable-procfs \
+      --with-installation-domain=SYSTEM \
       && gmake -j`nproc` && gmake install
   fi
   exit 0
