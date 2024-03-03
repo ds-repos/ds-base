@@ -62,8 +62,6 @@ gnustep() {
   if [ -d "/System/Libraries/gnustep-base/" ] ; then
     echo "gnustep-base already exists. Skipping installation."
   else
-    export OBJCFLAGS='-fobjc-runtime=gnustep-2.0 -fblocks' \
-		ac_cv_header_bfd_h=no ac_cv_lib_bfd_bfd_openr=no
     cd "${SRC}/libs-base" && ./configure \
       --disable-procfs \
       --with-installation-domain=SYSTEM \
