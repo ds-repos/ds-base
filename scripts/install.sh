@@ -43,7 +43,7 @@ libobjc2() {
   if [ -f "/System/include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
-    cd ${$build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM -DOLDABI_COMPAT=OFF ..
+    cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM -DOLDABI_COMPAT=OFF ..
     gmake
     gmake install
   fi
