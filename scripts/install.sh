@@ -55,11 +55,9 @@ gnustep() {
     echo "gnustep-base already exists. Skipping installation."
   else
     cd "${SRC}/libs-base" && ./configure \
-      --disable-procfs \
-      --with-installation-domain=SYSTEM \
-      --with-zeroconf-api=mdns \
-      && gmake && gmake install
+      && gmake -j`nproc` && gmake install
   fi
+  exit 0
   if [ -d "/System/Libraries/gnustep-gui" ] ; then
     echo "libs-gui already exists.  Skipping installation."
   else
@@ -233,6 +231,7 @@ themes()
 gnustep-make
 libobjc2
 gnustep
+exit 0
 developer
 apps
 overlay
