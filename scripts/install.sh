@@ -22,8 +22,7 @@ gnustep-make() {
       --with-thread-lib=-pthread \
       --with-layout=dubstep \
       --with-config-file=/Library/Preferences/GNUstep.conf \
-      --enable-objc-nonfragile-abi \
-      --enable-native-objc-exceptions \
+      --enable-objc-arc \
       --with-library-combo=ng-gnu-gnu \
        && gmake && gmake install
     . /Developer/Makefiles/GNUstep.sh
