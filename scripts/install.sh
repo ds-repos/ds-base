@@ -40,7 +40,7 @@ libobjc2() {
   fi
 
   # Change to Build directory and configure/build the project
-  if [ -f "/System/Include/Block.h" ] ; then
+  if [ -f "/System/include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
     (cd "$build_dir" && cmake .. -G Ninja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
