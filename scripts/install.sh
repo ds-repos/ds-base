@@ -47,9 +47,10 @@ libobjc2() {
     export LDFLAGS_armv7="-Wl,-znotext"
     export SSP_UNSAFE="yes"
     cd ${build_dir} && git submodule init && git submodule update
-    cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM -DLIB_INSTALL_PATH=lib ..
+    cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM -DOLDABI_COMPAT=OFF ..
     gmake
     gmake install
+    ldconfig
   fi
 }
 
