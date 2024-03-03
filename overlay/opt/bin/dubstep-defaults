@@ -12,7 +12,7 @@ defaults write Terminal TerminalFontSize 16
 
 # GLOBAL SETTINGS
 defaults write NSGlobalDomain GSSuppressAppIcon 1
-defaults write NSGlobalDomain GSTheme Sombre
+defaults write NSGlobalDomain GSTheme DubstepDark
 defaults write NSGlobalDomain NSBackUsesNativeTaskbar 1
 defaults write NSGlobalDomain NSInterfaceStyleDefault NSMacintoshInterfaceStyle
 defaults write NSGlobalDomain UseWindowMakerIcons 0
@@ -54,6 +54,4 @@ defaults write NSGlobalDomain NSUserFontSize 12.0
 # GWorkspace
 defaults write GWorkspace imagepath /System/Library/Desktop\ Pictures/
 
-# DEFAULT THEME
-defaults write NSGlobalDomain GSTheme Sombre
 
