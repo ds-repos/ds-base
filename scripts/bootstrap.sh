@@ -12,6 +12,14 @@ fi
 packages()
 {
   cat ../conf/ports.conf | xargs pkg install -y
+  # Check if the architecture is amd64
+  if [ "$(uname -m)" = "amd64" ]; then
+    # Install packages from the list
+    cat ../conf/ports-amd64.conf | xargs pkg install -y
+    echo "Packages installed successfully."
+  else
+    return 0
+  fi
 }
 
 packages
