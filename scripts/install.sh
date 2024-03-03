@@ -43,6 +43,9 @@ libobjc2() {
   if [ -f "/System/include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
+    export LDFLAGS="-lm"
+    export LDFLAGS_armv7="-Wl,-znotext"
+    export SSP_UNSAFE="yes"
     cd ${build_dir} && git submodule init && git submodule update
     cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM -DLIB_INSTALL_PATH=lib ..
     gmake
