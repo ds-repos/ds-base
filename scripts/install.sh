@@ -44,7 +44,7 @@ libobjc2() {
     echo "libobjc already exists. Skipping installation."
   else
     cd ${build_dir} && git submodule init && git submodule update
-    cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM ..
+    cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM -DLIB_INSTALL_PATH=lib ..
     gmake
     gmake install
   fi
