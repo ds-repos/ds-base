@@ -50,6 +50,7 @@ libobjc2() {
     cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM -DOLDABI_COMPAT=OFF ..
     gmake
     gmake install
+    rm -rf ${build_dir}
     ldconfig
   fi
 }
