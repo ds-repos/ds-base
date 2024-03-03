@@ -43,7 +43,7 @@ libobjc2() {
   if [ -f "/System/include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
-    (cd "$build_dir" && cmake .. -G Ninja -DGNUSTEP_INSTALL_TYPE=SYSTEM -DOLDABI_COMPAT=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
+    (cd "$build_dir" && cmake .. -G Ninja -DOLDABI_COMPAT=OFF -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++)
     (cd "$build_dir" && ninja install)
   fi
 }
