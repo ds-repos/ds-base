@@ -239,7 +239,7 @@ themes()
 }
 
 gnustep-make
-libobjc2
+#libobjc2
 gnustep
 exit 0
 developer
