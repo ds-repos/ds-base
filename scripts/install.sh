@@ -31,6 +31,7 @@ gnustep-make() {
 }
 
 libobjc2() {
+  export LD=/usr/local/bin/ld.lld
   local repo_dir="${SRC}/libobjc2"
   local build_dir="${repo_dir}/Build"
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
@@ -57,6 +58,7 @@ libobjc2() {
 }
 
 gnustep() {
+  export LD=/usr/local/bin/ld.lld
   local LOCALBASE="/usr/local"
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
   if [ -d "/System/Libraries/gnustep-base/" ] ; then
@@ -67,6 +69,7 @@ gnustep() {
       --with-installation-domain=SYSTEM \
       && gmake -j`nproc` && gmake install
   fi
+  exit 0
   if [ -d "/System/Libraries/gnustep-gui" ] ; then
     echo "libs-gui already exists.  Skipping installation."
   else
@@ -238,8 +241,9 @@ themes()
 }
 
 gnustep-make
-#libobjc2
+libobjc2
 gnustep
+exit 0
 developer
 apps
 overlay
