@@ -241,7 +241,6 @@ themes()
 gnustep-make
 #libobjc2
 gnustep
-exit 0
 developer
 apps
 overlay
