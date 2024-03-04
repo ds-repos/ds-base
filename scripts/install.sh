@@ -15,8 +15,8 @@ CWD="$(realpath)"
  # we set the C and C++ compiler version
  export CC=clang
  export CXX=clang++
- export LD=/usr/local/bin/ld.gold
- export LDFLAGS=-fuse-ld=gold
+ export LD=/usr/local/bin/ld.bfd
+ export LDFLAGS=-fuse-ld=bfd
 
 gnustep-make() {
   # Check if GNUstep.sh exists
