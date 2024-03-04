@@ -17,6 +17,7 @@ CWD="$(realpath)"
  export CXX=clang++
  export LD=/usr/local/bin/ld.bfd
  export LDFLAGS=-fuse-ld=bfd
+ export GNUSTEP_INSTALL_LD_SO_CONF=no
 
 gnustep-make() {
   # Check if GNUstep.sh exists
