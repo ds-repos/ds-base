@@ -16,7 +16,7 @@ CWD="$(realpath)"
  export CC=clang
  export CXX=clang++
  #export LD=/usr/bin/ld.lld
- #export LDFLAGS=-fuse-ld=/usr/bin/ld.lld
+ export LDFLAGS=-fuse-ld=gold
 
 gnustep-make() {
   # Check if GNUstep.sh exists
