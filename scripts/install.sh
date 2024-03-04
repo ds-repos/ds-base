@@ -67,7 +67,6 @@ gnustep() {
       --with-installation-domain=SYSTEM \
       && gmake -j`nproc` && gmake install
   fi
-  exit 0
   if [ -d "/System/Libraries/gnustep-gui" ] ; then
     echo "libs-gui already exists.  Skipping installation."
   else
@@ -247,7 +246,7 @@ overlay
 sysctl
 modules
 bonjour
-services
+#services
 sudoers
 fonts
 themes
