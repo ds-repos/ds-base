@@ -15,8 +15,7 @@ CWD="$(realpath)"
  # we set the C and C++ compiler version
  export CC=clang
  export CXX=clang++
- #export LD=/usr/bin/ld.lld
- export LDFLAGS=-fuse-ld=gold
+ # export LDFLAGS=-fuse-ld=gold
 
 gnustep-make() {
   # Check if GNUstep.sh exists
@@ -66,7 +65,7 @@ gnustep() {
       --with-installation-domain=SYSTEM \
       --disable-icu \
       --disable-invocations \
-      && gmake -j`nproc` && gmake install
+      && LDFLAGS=${LDFLAGS} CC=${CC} CXX=${CXX} gmake -j`nproc` && gmake install
   fi
   exit 0
   if [ -d "/System/Libraries/gnustep-gui" ] ; then
