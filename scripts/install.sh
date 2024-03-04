@@ -248,5 +248,5 @@ modules
 bonjour
 #services
 sudoers
-fonts
-themes
+#fonts
+#themes
