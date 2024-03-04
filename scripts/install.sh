@@ -13,10 +13,10 @@ fi
 CWD="$(realpath)"
 
  # we set the C and C++ compiler version
- export CC=/usr/bin/clang
- export CXX=/usr/bin/clang++
- export LD=/usr/bin/ld.lld
- export LDFLAGS=-fuse-ld=/usr/bin/ld.lld
+ export CC=clang
+ export CXX=clang++
+ #export LD=/usr/bin/ld.lld
+ #export LDFLAGS=-fuse-ld=/usr/bin/ld.lld
 
 gnustep-make() {
   # Check if GNUstep.sh exists
@@ -25,11 +25,8 @@ gnustep-make() {
     . /Developer/Makefiles/GNUstep.sh
   else
     cd "${SRC}/tools-make" && ./configure \
-      --with-thread-lib=-pthread \
       --with-layout=dubstep \
       --with-config-file=/Library/Preferences/GNUstep.conf \
-      --enable-objc-nonfragile-abi \
-      --enable-native-objc-exceptions \
       --with-library-combo=ng-gnu-gnu \
        && gmake && gmake install
     . /Developer/Makefiles/GNUstep.sh
@@ -51,7 +48,7 @@ libobjc2() {
     echo "libobjc already exists. Skipping installation."
   else
     cd ${build_dir} && git submodule init && git submodule update
-    cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM  -DCMAKE_C_COMPILER=${CC} -DCMAKE_CXX_COMPILER=${CXX} -DCMAKE_LINKER=${LD} -DCMAKE_MODULE_LINKER_FLAGS=${LDFLAGS} ..
+    cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM  -DCMAKE_C_COMPILER=${CC} -DCMAKE_CXX_COMPILER=${CXX} ..
     gmake
     gmake install
     rm -rf ${build_dir}
@@ -66,8 +63,9 @@ gnustep() {
     echo "gnustep-base already exists. Skipping installation."
   else
     cd "${SRC}/libs-base" && ./configure \
-      --disable-procfs \
       --with-installation-domain=SYSTEM \
+      --disable-icu \
+      --disable-invocations \
       && gmake -j`nproc` && gmake install
   fi
   exit 0
