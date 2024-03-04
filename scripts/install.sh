@@ -12,6 +12,12 @@ fi
 # This variable allows getting back to this repo
 CWD="$(realpath)"
 
+ # we set the C and C++ compiler version
+ export CC=/usr/bin/clang
+ export CXX=/usr/bin/clang++
+ export LD=/usr/bin/ld.lld
+ export LDFLAGS=-fuse-ld=/usr/bin/ld.lld
+
 gnustep-make() {
   # Check if GNUstep.sh exists
   if [ -f "/Developer/Makefiles/GNUstep.sh" ]; then
@@ -31,7 +37,6 @@ gnustep-make() {
 }
 
 libobjc2() {
-  export LD=/usr/local/bin/ld.lld
   local repo_dir="${SRC}/libobjc2"
   local build_dir="${repo_dir}/Build"
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
@@ -45,11 +50,8 @@ libobjc2() {
   if [ -f "/System/include/Block.h" ] ; then
     echo "libobjc already exists. Skipping installation."
   else
-    export LDFLAGS="-lm"
-    export LDFLAGS_armv7="-Wl,-znotext"
-    export SSP_UNSAFE="yes"
     cd ${build_dir} && git submodule init && git submodule update
-    cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM ..
+    cd ${build_dir} && cmake -DGNUSTEP_INSTALL_TYPE=SYSTEM  -DCMAKE_C_COMPILER=${CC} -DCMAKE_CXX_COMPILER=${CXX} -DCMAKE_LINKER=${LD} -DCMAKE_MODULE_LINKER_FLAGS=${LDFLAGS} ..
     gmake
     gmake install
     rm -rf ${build_dir}
@@ -58,7 +60,6 @@ libobjc2() {
 }
 
 gnustep() {
-  export LD=/usr/local/bin/ld.lld
   local LOCALBASE="/usr/local"
   export GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
   if [ -d "/System/Libraries/gnustep-base/" ] ; then
