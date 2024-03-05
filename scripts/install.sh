@@ -16,7 +16,7 @@ CWD="$(realpath)"
  export CC=clang
  export CXX=clang++
  #export LD=/usr/local/bin/ld.bfd
- export LDFLAGS=-lm
+ export LDFLAGS=-Wl,-znotext
  #export GNUSTEP_INSTALL_LD_SO_CONF=no
 
 gnustep-make() {
