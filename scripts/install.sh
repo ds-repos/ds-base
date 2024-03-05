@@ -15,9 +15,9 @@ CWD="$(realpath)"
  # we set the C and C++ compiler version
  export CC=clang
  export CXX=clang++
- export LD=/usr/local/bin/ld.bfd
- export LDFLAGS=-fuse-ld=bfd
- export GNUSTEP_INSTALL_LD_SO_CONF=no
+ #export LD=/usr/local/bin/ld.bfd
+ export LDFLAGS=-lm
+ #export GNUSTEP_INSTALL_LD_SO_CONF=no
 
 gnustep-make() {
   # Check if GNUstep.sh exists
@@ -49,7 +49,7 @@ libobjc2() {
     echo "libobjc already exists. Skipping installation."
   else
     cd ${build_dir} && git submodule init && git submodule update
-    cd ${build_dir} && cmake -DCMAKE_BUILD_TYPE=Release -DGNUSTEP_INSTALL_TYPE=SYSTEM  -DCMAKE_C_COMPILER=${CC} -DCMAKE_CXX_COMPILER=${CXX} -DCMAKE_LINKER=${LD} -DCMAKE_MODULE_LINKER_FLAGS="${LDFLAGS}" ..
+    cd ${build_dir} && cmake -DCMAKE_BUILD_TYPE=Release -DGNUSTEP_INSTALL_TYPE=SYSTEM  -DCMAKE_C_COMPILER=${CC} -DCMAKE_CXX_COMPILER=${CXX} -DCMAKE_MODULE_LINKER_FLAGS="${LDFLAGS}" ..
     gmake
     gmake install
     rm -rf ${build_dir}
