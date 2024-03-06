@@ -236,11 +236,11 @@ libobjc2
 gnustep
 developer
 apps
-overlay
-sysctl
-modules
-bonjour
-services
+#overlay
+#sysctl
+#modules
+#bonjour
+#services
 sudoers
 fonts
 themes

@@ -3,7 +3,7 @@
 #
 
 install:
-	cd scripts && ./bootstrap.sh
+	#cd scripts && ./bootstrap.sh
 	cd scripts && ./checkout.sh
 	cd scripts && ./install.sh
 
