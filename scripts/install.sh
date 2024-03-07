@@ -251,6 +251,6 @@ overlay
 #modules
 #bonjour
 #services
-sudoers
+#sudoers
 fonts
 themes
