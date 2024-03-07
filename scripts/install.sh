@@ -10,9 +10,9 @@ fi
 . ../conf/build.conf
 
 # This variable allows getting back to this repo
-CWD="$(realpath)"
+CWD="$(cwd)"
 
-gnustep-make() {
+gnustep_make() {
   # Check if GNUstep.sh exists
   if [ -f "/Developer/Makefiles/GNUstep.sh" ]; then
     echo "tools-make already exists. Skipping installation."
@@ -231,7 +231,7 @@ themes()
   gmake install GNUSTEP_INSTALLATION_DOMAIN=SYSTEM 
 }
 
-gnustep-make
+gnustep_make
 libobjc2
 gnustep
 developer
