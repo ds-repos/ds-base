@@ -10,7 +10,7 @@ fi
 . ../conf/build.conf
 
 # This variable allows getting back to this repo
-CWD="$(cwd)"
+CWD="$(pwd)"
 
 gnustep_make() {
   # Check if GNUstep.sh exists
