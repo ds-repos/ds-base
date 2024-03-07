@@ -243,7 +243,7 @@ libobjc2
 gnustep
 developer
 apps
-#overlay
+overlay
 #sysctl
 #modules
 #bonjour
