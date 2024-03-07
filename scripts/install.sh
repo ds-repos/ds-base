@@ -131,7 +131,13 @@ apps()
 
 overlay()
 {
-  cd ${CWD} && cp -R ../overlay/ /
+  if [ "$(uname)" = "FreeBSD" ]; then
+    cd ${CWD} && cp -R ../overlay/ /
+  elif [ "$(uname)" = "Linux" ]; then
+    cd ${CWD} && cp -R ../overlay-debian/ /
+  else
+    echo "Unsupported operating system"
+  fi
 }
 
 sysctl()
