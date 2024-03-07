@@ -11,7 +11,12 @@ fi
 
 packages()
 {
-  cat ../conf/ports.conf | xargs pkg install -y
-}
+  if [ "$(uname)" == "FreeBSD" ]; then
+    cat ../conf/ports.conf | xargs pkg install -y
+  elif [ "$(uname)" == "Linux" ]; then
+    cat ../conf/dpkg.conf | xargs apt install -fy
+  else
+    echo "Unsupported operating system"
+  fi
 
 packages
