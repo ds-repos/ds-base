@@ -135,9 +135,9 @@ overlay()
     cd ${CWD} && cp -R ../overlay/ /
   elif [ "$(uname)" = "Linux" ]; then
     cd ${CWD} && cp -R ../overlay-debian/* /
+    cd ${CWD} && cp -R ../overlay/usr/share/skel/* /etc/skel/
     cd ${CWD} && cd ../overlay/ && cp -r opt /
     cd ${CWD} && cd ../overlay/ && cp -r System /
-
   else
     echo "Unsupported operating system"
   fi
