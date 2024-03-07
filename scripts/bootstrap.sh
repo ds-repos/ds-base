@@ -18,5 +18,6 @@ packages()
   else
     echo "Unsupported operating system"
   fi
+}
 
 packages
