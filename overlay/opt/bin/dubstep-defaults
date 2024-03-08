@@ -54,4 +54,5 @@ defaults write NSGlobalDomain NSUserFontSize 12.0
 # GWorkspace
 defaults write GWorkspace imagepath /System/Library/Desktop\ Pictures/
 
-
+# Enable wayland backend
+defaults write NSGlobalDomain GSBackend libgnustep-wayland
