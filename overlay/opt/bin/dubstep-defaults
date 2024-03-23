@@ -55,6 +55,6 @@ defaults write NSGlobalDomain NSUserFontSize 12.0
 defaults write GWorkspace imagepath /System/Library/Desktop\ Pictures/
 
 # ProjectCenter
-ProjectCenter UseTearOffWindows NO
-ProjectCenter EditorForegroundColor 'RGB 1.0 1.0 1.0'
-ProjectCenter EditorBackgroundColor 'RGB 0.1 0.1 0.1'
+defaults write ProjectCenter UseTearOffWindows NO
+defaults write ProjectCenter EditorForegroundColor 'RGB 1.0 1.0 1.0'
+defaults write ProjectCenter EditorBackgroundColor 'RGB 0.1 0.1 0.1'
