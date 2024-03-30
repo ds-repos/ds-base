@@ -6,7 +6,7 @@ case $WINDOW_MANAGER in
       exec wmaker --static & GWorkspace
     ;;
     "GWorkspace")
-      picom --config /opt/etc/picom.conf
+      picom --config /opt/etc/picom.conf &
       exec GWorkspace
     ;;
   *)
